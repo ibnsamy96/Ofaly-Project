@@ -1,0 +1,6 @@
+# Design Files
+*.xd
+*.pdf
+
+# Config Files/Folders
+.vscode
