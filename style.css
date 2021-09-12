@@ -3,6 +3,8 @@
   --primaryFontColor: #191919;
   --primaryBackgroundColor: rgb(249, 249, 249);
   --secondaryBackgroundColor: rgb(255, 255, 255);
+  --primaryTitleFontFamily: "Days One", sans-serif;
+  --primaryTextFontFamily: "Cairo", sans-serif;
 }
 
 /* Global Rules */
@@ -11,6 +13,7 @@
   margin: 0;
   padding: 0;
   box-sizing: border-box;
+  font-family: var(--primaryTextFontFamily);
 }
 
 html {
@@ -51,6 +54,10 @@ ul {
 .page-section {
   min-height: 100vh;
   background-repeat: no-repeat;
+}
+
+.title-font {
+  font-family: var(--primaryTitleFontFamily);
 }
 
 .z-index-1 {
@@ -180,51 +187,22 @@ ul {
   align-items: center;
 }
 
+footer {
+  line-height: 32.85px;
+}
+
 /* Media Query */
 @media (max-width: 1400px) {
-  .container {
-    width: 80%;
-  }
 }
 
 @media (max-width: 1200px) {
-  .container {
-    width: 90%;
-  }
 }
 
 @media (max-width: 900px) {
-  .col {
-    flex-direction: column;
-  }
-
-  #myImageContainer {
-    margin-right: auto;
-  }
-
-  #introduction {
-    text-align: center;
-  }
 }
 
 @media (max-width: 500px) {
-  :root {
-    --imageWidth: 80vw;
-  }
-
-  #myImageContainer {
-    width: var(--imageWidth);
-    height: var(--imageWidth);
-  }
 }
 
 @media (max-width: 450px) {
-  h1 {
-    font-size: 1.4rem;
-  }
-
-  #introduction p {
-    font-size: 1.2rem;
-    line-height: 1.7;
-  }
 }
