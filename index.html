@@ -4,10 +4,12 @@
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="./assets/css/normalize.css" />
+    <link rel="stylesheet" href="./style.css" />
     <title>Ofaly</title>
   </head>
   <body>
-    <header id="hamburger-menu">
+    <header id="hamburger-menu" class="z-index-3">
       <!-- TODO if an image clicked make that button a cross -->
       <button type="button">
         <svg
@@ -51,61 +53,69 @@
         </ul>
       </nav>
     </header>
-    <section id="hero" class="page-section">
-      <div>
-        <div id="img-container">
-          <img
-            src="./assets/images/Main.png"
-            alt="The main image of the ofaly club."
-          />
+    <main>
+      <section id="hero" class="page-section">
+         <div class="container">   
+        <div>
+          <div id="img-container">
+            <img
+              src="./assets/images/Main.png"
+              alt="The main image of the ofaly club."
+            />
+          </div>
         </div>
-      </div>
-      <article>
-        <h1>Ofaly.Club</h1>
-        <p>
-          Ofaly companies are fully or majority owned by
-          <a href="#">UnVC Capital</a>. The Private Equity firm and its partners
-          have astrong history of operational excellence, deep sector expertise,
-          and an extensive local, regional, and global business network. UnVC
-          buys companies to grow and hold, but never sell. We expect the number
-          of our Ofaly companies to grow over.
-        </p>
-      </article>
-    </section>
-    <section id="gallery" class="page-section">
-      <!--  TODO next article is hidden until you choose an image -->
-      <article id="clicked-image-container">
-        <img src="" alt="" />
-        <p></p>
-      </article>
-      <!-- TODO generated using js and numbers are generated automatically using ::after -->
-    </section>
-    <section id="jobs" class="page-section">
-      <h1>Jobs</h1>
-      <h2>We are looking for:</h2>
-      <ol>
-        <li>Mechanical Engineer</li>
-        <li>Back-End Developers</li>
-        <li>Serial Killers</li>
-      </ol>
-    </section>
-    <section id="contact" class="page-section">
-      <div id="contacts-container">
-        <h1>Contact Us</h1>
-        <ul>
-          <li><a href="http://Facebook.com">Facebook</a></li>
-          <li><a href="http://Whatsapp.com">Whatsapp</a></li>
-          <li><a href="http://Instagram.com">Instagram</a></li>
-          <li><a href="http://LinkedIn.com">LinkedIn</a></li>
-          <li><a href="mailto:sales@ofaly.com">sales@ofaly.com</a></li>
-        </ul>
-      </div>
-      <footer>
-        © Ofaly 2021
-        <br />
-        All rights reserved
-      </footer>
-    </section>
+        <article>
+          <h1>Ofaly.Club</h1>
+          <p>
+            Ofaly companies are fully or majority owned by
+            <a href="#">UnVC Capital</a>. The Private Equity firm and its
+            partners have astrong history of operational excellence, deep sector
+            expertise, and an extensive local, regional, and global business
+            network. UnVC buys companies to grow and hold, but never sell. We
+            expect the number of our Ofaly companies to grow over.
+          </p>
+        </article> </div>
+      </section>
+      <section id="gallery" class="page-section">
+         <div class="container">  
+        <!--  TODO next article is hidden until you choose an image -->
+        <article id="clicked-image-container" class="z-index-2">
+          <img src="" alt="" />
+          <p></p>
+        </article>
+        <!-- TODO generated using js and numbers are generated automatically using ::after -->  </div>
+      </section>
+      <section id="jobs" class="page-section"> 
+        <div class="container">  
+        <h1>Jobs</h1>
+        <h2>We are looking for:</h2>
+        <ol>
+          <li>Mechanical Engineer</li>
+          <li>Back-End Developers</li>
+          <li>Serial Killers</li>
+        </ol>
+      </section>  </div>
+      <section id="contact" class="page-section"> 
+        <div class="container"> 
+        <div id="contacts-container">
+          <h1>Contact Us</h1>
+          <ul>
+            <li><a href="http://Facebook.com">Facebook</a></li>
+            <li><a href="http://Whatsapp.com">Whatsapp</a></li>
+            <li><a href="http://Instagram.com">Instagram</a></li>
+            <li><a href="http://LinkedIn.com">LinkedIn</a></li>
+            <li><a href="mailto:sales@ofaly.com">sales@ofaly.com</a></li>
+          </ul>
+        </div>
+        <footer>
+          © Ofaly 2021
+          <br />
+          All rights reserved
+        </footer>  
+         </div>
+      </section>
+    </main>
+    <div id="overlay" class="z-index-2"></div>
     <script src="./app.js" type="module"></script>
   </body>
 </html>

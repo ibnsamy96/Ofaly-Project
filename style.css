@@ -1,0 +1,173 @@
+:root {
+  --primaryBrandColor: red;
+  --primaryFontColor: #191919;
+  --primaryBackgroundColor: rgb(249, 249, 249);
+  --secondaryBackgroundColor: rgb(255, 255, 255);
+}
+
+/* Global Rules */
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html {
+  height: 100%;
+}
+
+body {
+  min-height: 100%;
+}
+
+ul {
+  list-style: none;
+}
+
+/* Global Classes */
+
+.container {
+  max-width: 1720px;
+  /* background-color: red; */
+  margin: auto;
+  width: 70%;
+  /* padding: 20px 0; */
+}
+
+.row {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+}
+
+.col {
+  /* width: 50%; */
+  /* display: flex;
+  justify-content: center;
+  align-items: center; */
+}
+
+.page-section {
+  min-height: 100vh;
+  background-repeat: no-repeat;
+}
+
+.z-index-1 {
+  z-index: 500;
+}
+
+.z-index-2 {
+  z-index: 1000;
+}
+
+.z-index-3 {
+  z-index: 1500;
+}
+
+/* The widely used Overlay */
+#overlay {
+  position: fixed; /* Sit on top of the page content */
+  display: none; /* Hidden by default */
+  width: 100%; /* Full width (cover the whole page) */
+  height: 100%; /* Full height (cover the whole page) */
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(0, 0, 0, 0.5); /* Black background with opacity */
+  cursor: pointer; /* Add a pointer on hover */
+}
+
+/* Header & Hamburger Menu */
+
+#hamburger-menu {
+  /* TODO change display */
+  display: none;
+  position: fixed;
+}
+
+/* Hero Section */
+.page-section#hero {
+  background-image: url(./assets/images/backgrounds/1.png);
+  background-color: var(--primaryBackgroundColor);
+  background-size: 66% auto;
+  background-position: left top;
+}
+
+/* Gallery Section */
+
+.page-section#gallery {
+  background-image: url(./assets/images/backgrounds/2.png);
+  background-color: var(--secondaryBackgroundColor);
+  background-size: 100% auto;
+  background-position: right bottom;
+}
+
+/* Jobs Section */
+
+.page-section#jobs {
+  background-image: url(./assets/images/backgrounds/3.png);
+  background-color: var(--secondaryBackgroundColor);
+  background-size: 100% auto;
+  background-position: left top;
+}
+
+/* Contact Section & Footer*/
+
+.page-section#contact {
+  background-image: url(./assets/images/backgrounds/4.png);
+  background-color: var(--primaryBackgroundColor);
+  background-color: var(--primaryBackgroundColor);
+  background-size: 79% auto;
+  background-position: right bottom;
+}
+
+/* Media Query */
+@media (max-width: 1400px) {
+  .container {
+    width: 80%;
+  }
+}
+
+@media (max-width: 1200px) {
+  .container {
+    width: 90%;
+  }
+}
+
+@media (max-width: 900px) {
+  .col {
+    flex-direction: column;
+  }
+
+  #myImageContainer {
+    margin-right: auto;
+  }
+
+  #introduction {
+    text-align: center;
+  }
+}
+
+@media (max-width: 500px) {
+  :root {
+    --imageWidth: 80vw;
+  }
+
+  #myImageContainer {
+    width: var(--imageWidth);
+    height: var(--imageWidth);
+  }
+}
+
+@media (max-width: 450px) {
+  h1 {
+    font-size: 1.4rem;
+  }
+
+  #introduction p {
+    font-size: 1.2rem;
+    line-height: 1.7;
+  }
+}
