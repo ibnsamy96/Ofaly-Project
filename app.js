@@ -7,7 +7,7 @@ function addImagesToGallery(imageObject) {
   //     number:
   // }
 
-  const gallery = document.querySelector("#gallery");
+  const galleryContainer = document.querySelector("#gallery .container");
 
   const imgContainer = document.createElement("div");
   const galleryImage = document.createElement("div");
@@ -23,7 +23,7 @@ function addImagesToGallery(imageObject) {
   imgContainer.appendChild(galleryImage);
   imgContainer.appendChild(galleryImageNumber);
 
-  gallery.appendChild(imgContainer);
+  galleryContainer.appendChild(imgContainer);
 }
 
 const toggleMenu = () => {};
