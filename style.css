@@ -1,6 +1,7 @@
 :root {
-  --primaryBrandColor: red;
-  --primaryFontColor: #191919;
+  --primaryBrandColor: #b22519;
+  --primaryTextColor: #000000;
+  --interactiveTextColor: #437cb7;
   --primaryBackgroundColor: rgb(249, 249, 249);
   --secondaryBackgroundColor: rgb(255, 255, 255);
   --primaryTitleFontFamily: "Days One", sans-serif;
@@ -34,7 +35,7 @@ ul {
   max-width: 1720px;
   /* background-color: red; */
   margin: auto;
-  width: 70%;
+  /* width: 70%; */
   height: 100vh;
 }
 
@@ -102,6 +103,25 @@ ul {
   background-position: left top;
 }
 
+#hero .container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+#hero .row {
+  justify-content: space-between;
+  align-items: center;
+}
+
+#hero #img-container.col {
+  width: 65%;
+}
+
+#hero article.col {
+  width: 33%;
+}
+
 #hero #img-container {
   max-width: 1130px;
   height: auto;
@@ -115,8 +135,8 @@ ul {
   border: black 1px solid;
   box-sizing: border-box;
   position: absolute;
-  top: -10px;
-  left: -10px;
+  top: -15%;
+  left: -8%;
   z-index: 0;
 }
 
@@ -125,6 +145,24 @@ ul {
   display: block;
   position: relative;
   z-index: 10;
+}
+
+#hero article h1 {
+  font-family: Days One;
+  font-style: normal;
+  font-weight: normal;
+  font-size: 97px;
+  line-height: 147px;
+  color: var(--primaryBrandColor);
+}
+
+#hero article p {
+  font-family: Cairo;
+  font-style: normal;
+  font-weight: normal;
+  font-size: 35px;
+  line-height: 53px;
+  color: var(--primaryTextColor);
 }
 
 /* Gallery Section */
