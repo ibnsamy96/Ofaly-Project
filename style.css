@@ -1,6 +1,7 @@
 :root {
   --primaryBrandColor: #b22519;
   --primaryTextColor: #000000;
+  /* TODO use the next color for hero links, contacts, jobs */
   --interactiveTextColor: #437cb7;
   --primaryBackgroundColor: rgb(249, 249, 249);
   --secondaryBackgroundColor: rgb(255, 255, 255);
@@ -154,6 +155,13 @@ ul {
   font-size: 97px;
   line-height: 147px;
   color: var(--primaryBrandColor);
+  -webkit-touch-callout: none; /* iOS Safari */
+  -webkit-user-select: none; /* Safari */
+  -khtml-user-select: none; /* Konqueror HTML */
+  -moz-user-select: none; /* Old versions of Firefox */
+  -ms-user-select: none; /* Internet Explorer/Edge */
+  user-select: none; /* Non-prefixed version, currently
+                                  supported by Chrome, Edge, Opera and Firefox */
 }
 
 #hero article p {
