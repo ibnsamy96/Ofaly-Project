@@ -97,9 +97,74 @@ ul {
 /* Header & Hamburger Menu */
 
 #hamburger-menu {
-  /* TODO change display */
+  position: absolute;
+  top: 72px;
+  right: 100px;
+}
+
+#hamburger-menu button {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: transparent;
+  border: none;
+  border-radius: 12%;
+  padding: 5px;
+  cursor: pointer;
+  transition: background-color 100ms;
+}
+
+#hamburger-menu button:hover {
+  background-color: rgba(0, 0, 0, 15%);
+}
+
+#hamburger-menu button svg rect {
+  transition: fill 100ms;
+}
+
+#hamburger-menu button:hover svg rect {
+  fill: white;
+}
+
+#hamburger-menu nav {
   display: none;
-  position: fixed;
+}
+
+#hamburger-menu nav ul {
+  --paddingX: 68px;
+  --paddingY: 48px;
+  background: black;
+  position: absolute;
+  top: 0;
+  right: 0;
+  padding-top: var(--paddingY);
+  padding-bottom: var(--paddingY);
+  border-radius: 10px;
+}
+#hamburger-menu nav ul .nav-item {
+  font-style: normal;
+  font-weight: normal;
+  font-size: 35px;
+  line-height: 201.9%;
+  text-decoration: none;
+  font-weight: 400;
+  text-align: center;
+  padding-right: var(--paddingX);
+  padding-left: var(--paddingX);
+  display: block;
+  transition: background-color 250ms;
+}
+
+#hamburger-menu nav ul .nav-item:not(.selected):hover {
+  background-color: rgba(255, 255, 255, 15%);
+}
+
+#hamburger-menu nav ul .nav-item.selected {
+  font-weight: 700;
+  cursor: default;
+}
+#hamburger-menu nav ul li {
+  color: white;
 }
 
 /* Hero Section */

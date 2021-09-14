@@ -35,9 +35,21 @@ function addImagesToGallery(imageObject) {
   galleryRow.appendChild(galleryCol);
 }
 
+const hamburgerNav = document.querySelector("#hamburger-menu nav");
+
 const toggleMenu = () => {
-  console.log("menu toggled");
+  const oldState = hamburgerNav.style.display;
+  let newState;
+
+  if (oldState === "block") {
+    newState = "none";
+  } else {
+    newState = "block";
+  }
+
+  hamburgerNav.style.display = newState;
 };
+
 const clickedImageContainer = document.querySelector(
   "#clicked-image-container"
 );
