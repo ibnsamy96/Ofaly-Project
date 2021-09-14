@@ -43,14 +43,10 @@ ul {
 .row {
   display: flex;
   flex-direction: row;
-  flex-wrap: wrap;
 }
 
 .col {
   /* width: 50%; */
-  /* display: flex;
-  justify-content: center;
-  align-items: center; */
 }
 
 .page-section {
@@ -180,6 +176,60 @@ ul {
   background-color: var(--secondaryBackgroundColor);
   background-size: 100% auto;
   background-position: right bottom;
+}
+
+#gallery article {
+  display: none;
+}
+
+#gallery .row {
+  flex-wrap: wrap;
+  text-align: center;
+  justify-content: space-between;
+  height: 100%;
+}
+
+#gallery .row .col {
+  width: 31.5%;
+  /* background-color: blue; */
+  padding: 48px 0 0 0;
+}
+
+#gallery .row .col .img-container {
+  width: 67.5%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  flex-wrap: nowrap;
+  justify-content: space-between;
+  /* background-color: red; */
+  cursor: pointer;
+}
+
+#gallery .row .col:nth-of-type(3n-2) .img-container {
+  margin-right: auto;
+}
+#gallery .row .col:nth-of-type(3n-1) .img-container {
+  margin-left: auto;
+  margin-right: auto;
+}
+
+#gallery .row .col:nth-of-type(3n) .img-container {
+  margin-left: auto;
+}
+
+#gallery .row .col .img-container .gallery-img {
+  flex-grow: 2;
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: center;
+}
+
+#gallery .row .col .img-container .gallery-img-number {
+  font-style: normal;
+  font-weight: normal;
+  font-size: 35px;
+  line-height: 66px;
 }
 
 /* Jobs Section */
