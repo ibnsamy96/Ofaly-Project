@@ -7,23 +7,28 @@ function addImagesToGallery(imageObject) {
   //     number:
   // }
 
-  const galleryContainer = document.querySelector("#gallery .container");
+  const marginsArray = ["", "", ""];
 
+  const galleryRow = document.querySelector("#gallery .container .row");
+
+  const galleryCol = document.createElement("div");
   const imgContainer = document.createElement("div");
-  const galleryImage = document.createElement("div");
-  const galleryImageNumber = document.createElement("p");
+  const imageDiv = document.createElement("div");
+  const imageDivNumber = document.createElement("p");
 
-  imgContainer.setAttribute("id", "img-container");
-  galleryImage.setAttribute("class", "gallery-img");
-  galleryImageNumber.setAttribute("class", "gallery-img-number");
+  galleryCol.setAttribute("class", "col");
+  imgContainer.setAttribute("class", "img-container");
+  imageDiv.setAttribute("class", "gallery-img");
+  imageDivNumber.setAttribute("class", "gallery-img-number");
 
-  galleryImage.style.backgroundImage = `url('${imageObject.link}')`;
-  galleryImageNumber.innerText = imageObject.number;
+  imageDiv.style.backgroundImage = `url('${imageObject.thumbnailLink}')`;
+  imageDivNumber.innerText = imageObject.number;
 
-  imgContainer.appendChild(galleryImage);
-  imgContainer.appendChild(galleryImageNumber);
+  galleryCol.appendChild(imgContainer);
+  imgContainer.appendChild(imageDiv);
+  imgContainer.appendChild(imageDivNumber);
 
-  galleryContainer.appendChild(imgContainer);
+  galleryRow.appendChild(galleryCol);
 }
 
 const toggleMenu = () => {};
