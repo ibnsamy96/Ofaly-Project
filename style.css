@@ -19,6 +19,8 @@
 }
 
 html {
+  line-height: 1.15; /* 1 */
+  -webkit-text-size-adjust: 100%; /* 2 */
   height: 100%;
 }
 
@@ -28,6 +30,55 @@ body {
 
 ul {
   list-style: none;
+}
+
+main {
+  display: block;
+}
+h1 {
+  font-size: 2em;
+  margin: 0;
+}
+a {
+  background-color: transparent;
+}
+abbr[title] {
+  border-bottom: none; /* 1 */
+  text-decoration: underline; /* 2 */
+  text-decoration: underline dotted; /* 2 */
+}
+img {
+  border-style: none;
+}
+button {
+  font-family: inherit; /* 1 */
+  font-size: 100%; /* 1 */
+  line-height: 1.15; /* 1 */
+  margin: 0; /* 2 */
+}
+button {
+  /* 1 */
+  overflow: visible;
+}
+button {
+  /* 1 */
+  text-transform: none;
+}
+button,
+[type="button"] {
+  -webkit-appearance: button;
+}
+button::-moz-focus-inner,
+[type="button"]::-moz-focus-inner {
+  border-style: none;
+  padding: 0;
+}
+button:-moz-focusring,
+[type="button"]:-moz-focusring {
+  outline: 1px dotted ButtonText;
+}
+[hidden] {
+  display: none;
 }
 
 /* Global Classes */

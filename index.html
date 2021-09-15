@@ -4,7 +4,7 @@
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link rel="stylesheet" href="./assets/css/normalize.css" />
+    <!-- <link rel="stylesheet" href="./assets/css/normalize.css" /> -->
     <link rel="stylesheet" href="./style.css" />
     <title>Ofaly</title>
     <meta name="description" content="Home page of Ofaly company website." />
@@ -17,7 +17,7 @@
   <body>
     <header id="hamburger-menu" class="z-index-3">
       <!-- TODO if an image clicked make that button a cross -->
-      <button name="menuToggleBTN" type="button">
+      <button aria-label="button to toggle the menu" type="button">
         <svg
           width="47"
           height="39"
@@ -93,7 +93,10 @@
           <article id="clicked-image-container" class="z-index-3">
             <img src="" alt="gallery-image" />
             <p></p>
-            <button name="closingImgBTN" type="button">
+            <button
+              aria-label="button to close the image container"
+              type="button"
+            >
               <img src="./assets/images/cross.svg" alt="close-image" />
             </button>
           </article>
