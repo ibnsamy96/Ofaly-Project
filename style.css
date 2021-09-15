@@ -548,6 +548,18 @@ footer {
     line-height: 30px;
   }
 
+  /* Hero Section */
+  .page-section#hero {
+    background-size: 1264.34px 655.82px;
+    background-position: 0 0;
+  }
+
+  /* Gallery Section */
+  .page-section#gallery {
+    background-size: 1365px 678px;
+    background-position: -864px 100%;
+  }
+
   /* Jobs Section */
   .page-section#jobs {
     background-size: 1088px 410px;
