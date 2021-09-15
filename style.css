@@ -528,15 +528,17 @@ footer {
 }
 
 @media (max-width: 1025px) {
-  /* */
+  /* Header & Hamburger Menu */
+  #hamburger-menu button svg {
+    transform: scale(0.51);
+  }
   #hamburger-menu nav ul {
     --paddingX: 30px;
     --paddingY: 31px;
   }
   #hamburger-menu nav ul .nav-item {
-    font-size: 50px;
-    line-height: 76px;
-    line-height: 151%;
+    font-size: 26px;
+    line-height: 52.49px;
   }
   /* Hero Section */
   #hero .row {
