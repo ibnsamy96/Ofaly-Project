@@ -85,10 +85,11 @@ button:-moz-focusring,
 
 .container {
   max-width: 1720px;
+  width: 90%;
   /* background-color: red; */
   margin: auto;
   /* width: 70%; */
-  height: 100vh;
+  min-height: 100vh;
 }
 
 .row {
@@ -514,9 +515,54 @@ footer {
 }
 
 @media (max-width: 1200px) {
+  /* Header & Hamburger Menu */
+  #hamburger-menu {
+    position: absolute;
+    top: 30px;
+    right: 30px;
+  }
 }
 
 @media (max-width: 1025px) {
+
+  /* */
+  #hamburger-menu nav ul{
+    --paddingX:30px;
+    --paddingY:31px;
+  }
+  #hamburger-menu nav ul .nav-item {
+    font-size: 50px
+    line-height: 76px
+    line-height: 151%
+  }
+  /* Hero Section */
+  #hero .row {
+    flex-direction: column;
+  }
+
+  #hero #img-container.col,
+  #hero article.col {
+    width: 100%;
+  }
+
+  #hero #img-container img {
+    width: 100%;
+  }
+
+  #hero article h1 {
+    font-size: 50px;
+    line-height: 151%;
+    text-align: center;
+    margin-top: 20px;
+  }
+
+  #hero article p {
+    font-size: 20px;
+    line-height: 30px;
+    line-height: 151%;
+    margin-top: 30px;
+  }
+
   /* Jobs Section */
   #jobs .container h2 {
     margin-top: 20px;
@@ -529,6 +575,12 @@ footer {
 }
 
 @media (max-width: 900px) {
+  /* Header & Hamburger Menu */
+  #hamburger-menu {
+    position: fixed;
+    top: 20px;
+    right: 20px;
+  }
 }
 
 @media (max-width: 500px) {
@@ -578,4 +630,5 @@ footer {
 }
 
 @media (max-width: 450px) {
+  
 }
