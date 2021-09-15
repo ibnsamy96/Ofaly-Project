@@ -7,6 +7,7 @@
     <link rel="stylesheet" href="./assets/css/normalize.css" />
     <link rel="stylesheet" href="./style.css" />
     <title>Ofaly</title>
+    <meta name="description" content="Home page of Ofaly company website." />
     <!-- TODO use this font 
       <link rel="preconnect" href="https://fonts.googleapis.com">
       <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -16,7 +17,7 @@
   <body>
     <header id="hamburger-menu" class="z-index-3">
       <!-- TODO if an image clicked make that button a cross -->
-      <button type="button">
+      <button name="menuToggleBTN" type="button">
         <svg
           width="47"
           height="39"
@@ -65,6 +66,7 @@
           <div class="row">
             <div id="img-container" class="col">
               <img
+                width="100%"
                 src="./assets/images/Main.png"
                 alt="The main image of the ofaly club."
               />
@@ -91,7 +93,7 @@
           <article id="clicked-image-container" class="z-index-3">
             <img src="" alt="gallery-image" />
             <p></p>
-            <button type="button">
+            <button name="closingImgBTN" type="button">
               <img src="./assets/images/cross.svg" alt="close-image" />
             </button>
           </article>
