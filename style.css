@@ -516,10 +516,53 @@ footer {
 @media (max-width: 1200px) {
 }
 
+@media (max-width: 1025px) {
+  /* Jobs Section */
+  #jobs .container h2 {
+    margin-top: 20px;
+  }
+  #jobs .container ol {
+    margin-top: 10px;
+  }
+
+  /* Contact Section & Footer*/
+}
+
 @media (max-width: 900px) {
 }
 
 @media (max-width: 500px) {
+  /* General Classes */
+  .section-h1 {
+    font-size: 50px;
+    line-height: 94px;
+  }
+
+  .section-h2 {
+    font-size: 20px;
+    line-height: 37px;
+  }
+
+  .section-p {
+    font-size: 20px;
+    line-height: 30px;
+  }
+
+  /* Jobs Section */
+  .page-section#jobs {
+    background-size: 1088px 410px;
+    background-position: -281px 0;
+  }
+
+  /* Contact Section & Footer*/
+  .page-section#contact {
+    background-size: 1172px 593px;
+    background-position: -640px 100%;
+  }
+  footer {
+    font-size: 14px;
+    line-height: 131.4%;
+  }
 }
 
 @media (max-width: 450px) {
