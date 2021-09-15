@@ -565,6 +565,33 @@ footer {
     line-height: 151%;
     margin-top: 30px;
   }
+  /* Gallery Section */
+  #gallery .row .col {
+    width: 46%;
+    padding: 15px 0 0 0;
+  }
+
+  #gallery .row .col .img-container {
+    width: 100%;
+    aspect-ratio: 175/195;
+    /* height: auto; */
+  }
+
+  #gallery .row .col:nth-of-type(odd) .img-container {
+    margin-right: auto;
+    margin-left: 0;
+  }
+
+  #gallery .row .col:nth-of-type(even) .img-container {
+    margin-left: auto;
+    margin-right: 0;
+  }
+
+  #gallery .row .col .img-container .gallery-img-number {
+    font-size: 20px;
+    line-height: 37px;
+    /* line-height: 100%; */
+  }
 
   /* Jobs Section */
   #jobs .container h2 {
