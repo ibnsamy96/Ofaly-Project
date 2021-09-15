@@ -1,14 +1,6 @@
 import { galleryImages } from "./gallery-images.js";
 
 function addImagesToGallery(imageObject) {
-  // imageObject = {
-  //     text:
-  //     link:
-  //     number:
-  // }
-
-  const marginsArray = ["", "", ""];
-
   const galleryRow = document.querySelector("#gallery .container .row");
 
   const galleryCol = document.createElement("div");
@@ -36,18 +28,38 @@ function addImagesToGallery(imageObject) {
 }
 
 const hamburgerNav = document.querySelector("#hamburger-menu nav");
+const hamburgerNavUL = document.querySelector("#hamburger-menu nav ul");
 
 const toggleMenu = () => {
   const oldState = hamburgerNav.style.display;
-  let newState;
+  let newDisplay;
+  let newOpacity;
+  let newTop;
 
   if (oldState === "block") {
-    newState = "none";
+    newDisplay = "none";
+    newTop = "10px";
+    newOpacity = 0;
   } else {
-    newState = "block";
+    toggleOverlay({ isMenu: true });
+    newDisplay = "block";
+    newTop = "0px";
+    newOpacity = 1;
   }
 
-  hamburgerNav.style.display = newState;
+  if (oldState === "block") {
+    hamburgerNavUL.style.opacity = newOpacity;
+    hamburgerNavUL.style.top = newTop;
+    setTimeout(() => {
+      hamburgerNav.style.display = newDisplay;
+    }, 500);
+  } else {
+    hamburgerNav.style.display = newDisplay;
+    setTimeout(() => {
+      hamburgerNavUL.style.opacity = newOpacity;
+      hamburgerNavUL.style.top = newTop;
+    }, 100);
+  }
 };
 
 const clickedImageContainer = document.querySelector(
@@ -64,22 +76,36 @@ const togglePageScroll = (neededAction) => {
   }
 };
 
-const toggleOverlay = () => {
+const toggleOverlay = ({ isMenu }) => {
   togglePageScroll();
 
   const oldState = overlay.style.display;
   let newState;
 
   if (oldState === "block") {
+    if (overlay.dataset.state === "menu-opened") {
+      toggleMenu();
+    } else {
+      overlay.classList.remove("blurryEffect");
+    }
+    overlay.removeAttribute("data-state");
     togglePageScroll("show-scroll");
     newState = "none";
   } else {
+    if (isMenu) {
+      overlay.setAttribute("data-state", "menu-opened");
+    } else {
+      overlay.setAttribute("data-state", "img-shown");
+      overlay.classList.add("blurryEffect");
+    }
     togglePageScroll("hide-scroll");
     newState = "block";
   }
 
   overlay.style.display = newState;
 };
+
+overlay.addEventListener("click", toggleOverlay);
 
 const showGalleryImage = (imageNumber) => {
   // TODO fetch all images right after opening the page so that they open fast when clicked
@@ -90,7 +116,7 @@ const showGalleryImage = (imageNumber) => {
     .querySelector("img")
     .addEventListener("click", hideGalleryImage);
 
-  toggleOverlay();
+  toggleOverlay({ isMenu: false });
   clickedImageContainer.style.display = "flex";
 };
 
@@ -105,4 +131,18 @@ galleryImages.forEach((image, index) => {
   console.log(index);
   const imageObject = { number: index + 1, ...image };
   addImagesToGallery(imageObject);
+});
+
+const linksElements = [
+  ...document.querySelectorAll("#hamburger-menu nav ul .nav-item"),
+];
+linksElements.forEach((linkElement) => {
+  linkElement.addEventListener("click", (e) => {
+    e.preventDefault();
+    toggleOverlay({ isMenu: true });
+    const link = e.target.href || e.path[1]["href"];
+    if (window.location.href !== link) {
+      window.location.href = link;
+    }
+  });
 });
