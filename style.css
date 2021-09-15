@@ -344,6 +344,19 @@ button:-moz-focusring,
   flex-direction: column;
   justify-content: center;
   align-items: center;
+  overflow: auto;
+}
+#gallery article button {
+  position: absolute;
+  top: 35px;
+  right: 100px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: transparent;
+  border: none;
+  padding: 5px;
+  cursor: pointer;
 }
 
 #gallery article img {
@@ -361,24 +374,11 @@ button:-moz-focusring,
   margin-top: 30px;
 }
 
-#gallery article button {
-  position: absolute;
-  top: 35px;
-  right: 100px;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  background: transparent;
-  border: none;
-  padding: 5px;
-  cursor: pointer;
-}
-
 #gallery .row {
   flex-wrap: wrap;
   text-align: center;
   justify-content: space-between;
-  height: 100%;
+  min-height: 100vh;
 }
 
 #gallery .row .col {
@@ -521,6 +521,10 @@ footer {
     top: 30px;
     right: 30px;
   }
+  #gallery article button {
+    top: 30px;
+    right: 30px;
+  }
 }
 
 @media (max-width: 1025px) {
@@ -609,6 +613,12 @@ footer {
   .page-section#gallery {
     background-size: 1365px 678px;
     background-position: -864px 100%;
+  }
+
+  #gallery article p {
+    font-size: 20px;
+    line-height: 28px;
+    /* line-height: 75%; */
   }
 
   /* Jobs Section */
