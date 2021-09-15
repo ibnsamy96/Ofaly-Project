@@ -45,10 +45,6 @@ ul {
   flex-direction: row;
 }
 
-.col {
-  /* width: 50%; */
-}
-
 .page-section {
   min-height: 100vh;
   background-repeat: no-repeat;
@@ -81,7 +77,7 @@ ul {
   right: 0;
   bottom: 0;
 
-  cursor: pointer; /* Add a pointer on hover */
+  /* cursor: pointer; Add a pointer on hover */
 }
 
 .blurryEffect {
@@ -283,6 +279,19 @@ ul {
   font-size: 35px;
   line-height: 43px;
   text-align: center;
+}
+
+#gallery article button {
+  position: absolute;
+  top: 72px;
+  right: 100px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: transparent;
+  border: none;
+  padding: 5px;
+  cursor: pointer;
 }
 
 #gallery .row {

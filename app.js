@@ -112,9 +112,6 @@ const showGalleryImage = (imageNumber) => {
   const { imgLink, imgText } = galleryImages[imageNumber - 1];
   clickedImageContainer.querySelector("img").setAttribute("src", imgLink);
   clickedImageContainer.querySelector("p").innerText = imgText;
-  clickedImageContainer
-    .querySelector("img")
-    .addEventListener("click", hideGalleryImage);
 
   toggleOverlay({ isMenu: false });
   clickedImageContainer.style.display = "flex";
@@ -122,10 +119,15 @@ const showGalleryImage = (imageNumber) => {
 
 const hideGalleryImage = () => {
   clickedImageContainer.style.display = "none";
-  toggleOverlay();
+  toggleOverlay({ isMenu: false });
 };
 
-document.querySelector("button").addEventListener("click", toggleMenu);
+clickedImageContainer
+  .querySelector("button")
+  .addEventListener("click", hideGalleryImage);
+
+const hamburgerMenuBTN = document.querySelector("#hamburger-menu button");
+hamburgerMenuBTN.addEventListener("click", toggleMenu);
 
 galleryImages.forEach((image, index) => {
   console.log(index);
