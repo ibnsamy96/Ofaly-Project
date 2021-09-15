@@ -271,6 +271,7 @@ ul {
 
 #gallery article img {
   max-width: 90%;
+  max-height: 70%;
 }
 #gallery article p {
   max-width: 90%;

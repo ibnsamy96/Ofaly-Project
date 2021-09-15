@@ -10,11 +10,11 @@ function addImagesToGallery(imageObject) {
 
   galleryCol.setAttribute("class", "col");
   imgContainer.setAttribute("class", "img-container");
-  galleryImg.setAttribute("class", "gallery-img");
-  galleryImg.setAttribute("data-number", imageObject.number);
-  galleryImg.addEventListener("click", (e) =>
-    showGalleryImage(e.target.dataset.number)
+  imgContainer.setAttribute("data-number", imageObject.number);
+  imgContainer.addEventListener("click", (e) =>
+    showGalleryImage(e.target.dataset.number || e.path[1]["dataset"]["number"])
   );
+  galleryImg.setAttribute("class", "gallery-img");
   galleryImgNumber.setAttribute("class", "gallery-img-number");
 
   galleryImg.style.backgroundImage = `url('${imageObject.thumbnailLink}')`;
