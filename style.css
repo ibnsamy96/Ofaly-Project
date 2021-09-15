@@ -85,7 +85,7 @@ ul {
     255,
     255,
     255,
-    0.5
+    0.8
   ); /* white background with opacity */
   -webkit-backdrop-filter: blur(15px) !important;
   -moz-backdrop-filter: blur(15px) !important;
@@ -279,11 +279,12 @@ ul {
   font-size: 35px;
   line-height: 43px;
   text-align: center;
+  font-weight: 400;
 }
 
 #gallery article button {
   position: absolute;
-  top: 72px;
+  top: 35px;
   right: 100px;
   display: flex;
   justify-content: center;
