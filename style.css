@@ -66,6 +66,27 @@ ul {
   z-index: 1500;
 }
 
+.section-h1 {
+  font-size: 72px;
+  line-height: 135px;
+  font-style: normal;
+  font-weight: normal;
+}
+
+.section-h2 {
+  font-style: normal;
+  font-weight: normal;
+  font-size: 35px;
+  line-height: 66px;
+}
+
+.section-p {
+  font-style: normal;
+  font-weight: normal;
+  font-size: 35px;
+  line-height: 52px;
+}
+
 /* The widely used Overlay */
 #overlay {
   position: fixed; /* Sit on top of the page content */
@@ -246,6 +267,10 @@ ul {
   line-height: 53px;
   color: var(--primaryTextColor);
 }
+#hero article p a {
+  text-decoration: none;
+  color: var(--interactiveTextColor);
+}
 
 /* Gallery Section */
 
@@ -271,7 +296,7 @@ ul {
 
 #gallery article img {
   max-width: 90%;
-  max-height: 70%;
+  max-height: 68%;
 }
 #gallery article p {
   max-width: 90%;
@@ -281,6 +306,7 @@ ul {
   line-height: 43px;
   text-align: center;
   font-weight: 400;
+  margin-top: 30px;
 }
 
 #gallery article button {
@@ -363,11 +389,21 @@ ul {
   text-align: center;
 }
 
+#jobs .container h2 {
+  margin-top: 30px;
+}
+
 #jobs .container ol {
+  margin-top: 40px;
+  margin-right: -25px;
   display: flex;
   flex-direction: column;
   /* justify-content: center; */
   align-items: center;
+}
+
+#jobs .container ol li:nth-of-type(odd) {
+  color: var(--interactiveTextColor);
 }
 
 /* Contact Section & Footer*/
@@ -397,8 +433,29 @@ ul {
   align-items: center;
 }
 
+#contact .container #contacts-container ul {
+  margin-top: 10px;
+}
+
+#contact .container #contacts-container ul li a {
+  color: var(--interactiveTextColor);
+  text-decoration: none;
+}
+
+#contact .container #contacts-container ul li:last-of-type {
+  margin-top: 40px;
+}
+
+#contact .container #contacts-container ul li:last-of-type a {
+  color: var(--primaryTextColor);
+}
+
 footer {
-  line-height: 32.85px;
+  font-style: normal;
+  font-weight: normal;
+  font-size: 25px;
+  line-height: 33px;
+  margin-bottom: 10px;
 }
 
 /* Media Query */
