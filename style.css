@@ -524,16 +524,15 @@ footer {
 }
 
 @media (max-width: 1025px) {
-
   /* */
-  #hamburger-menu nav ul{
-    --paddingX:30px;
-    --paddingY:31px;
+  #hamburger-menu nav ul {
+    --paddingX: 30px;
+    --paddingY: 31px;
   }
   #hamburger-menu nav ul .nav-item {
-    font-size: 50px
-    line-height: 76px
-    line-height: 151%
+    font-size: 50px;
+    line-height: 76px;
+    line-height: 151%;
   }
   /* Hero Section */
   #hero .row {
@@ -576,10 +575,10 @@ footer {
 
 @media (max-width: 900px) {
   /* Header & Hamburger Menu */
-  #hamburger-menu {
-    position: fixed;
-    top: 20px;
-    right: 20px;
+  #hamburger-menu nav ul .nav-item {
+    font-size: 26px;
+    line-height: 52px;
+    line-height: 202%;
   }
 }
 
@@ -630,5 +629,4 @@ footer {
 }
 
 @media (max-width: 450px) {
-  
 }
