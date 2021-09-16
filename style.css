@@ -578,6 +578,11 @@ footer {
     padding: 30px 0;
   }
 
+  #gallery article button img {
+    width: 20px;
+    height: 20px;
+  }
+
   #gallery .row .col {
     width: 46%;
     padding: 15px 0 0 0;
@@ -672,11 +677,6 @@ footer {
   .page-section#gallery {
     background-size: 1365px 678px;
     background-position: -864px 100%;
-  }
-
-  #gallery article button img {
-    width: 20px;
-    height: 20px;
   }
 
   #gallery article p {
