@@ -681,3 +681,9 @@ footer {
 
 @media (max-width: 450px) {
 }
+
+@media (max-height: 670px) {
+  #hero article p {
+    margin-bottom: 30px;
+  }
+}
