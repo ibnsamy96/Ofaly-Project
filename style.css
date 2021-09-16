@@ -627,6 +627,13 @@ footer {
   #gallery article p {
     font-size: 30px;
   }
+
+  /* Contact Section & Footer*/
+  #contact .container #contacts-container ul li a {
+    display: block;
+    width: fit-content;
+    margin: auto;
+  }
 }
 
 @media (max-width: 500px) {
