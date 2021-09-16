@@ -158,7 +158,7 @@ button:-moz-focusring,
     255,
     255,
     255,
-    0.8
+    0.85
   ); /* white background with opacity */
   -webkit-backdrop-filter: blur(15px) !important;
   -moz-backdrop-filter: blur(15px) !important;
@@ -367,7 +367,7 @@ button:-moz-focusring,
 
 #gallery article > img {
   max-width: 90%;
-  max-height: 68%;
+  /* max-height: 68%; */
 }
 #gallery article p {
   max-width: 90%;
@@ -714,5 +714,12 @@ footer {
 @media (max-height: 670px) {
   #hero article p {
     margin-bottom: 30px;
+  }
+}
+
+@media (max-height: 420px) {
+  #gallery article {
+    padding-top: 300px;
+    padding-bottom: 30px;
   }
 }
