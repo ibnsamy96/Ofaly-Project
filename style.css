@@ -281,6 +281,7 @@ button:-moz-focusring,
   content: "";
   width: 100%;
   aspect-ratio: 1130 / 680;
+  height: 100%;
   border: black 1px solid;
   box-sizing: border-box;
   position: absolute;
@@ -463,14 +464,11 @@ button:-moz-focusring,
 #jobs .container ol li a {
   text-decoration: none;
   color: var(--primaryTextColor);
+  color: var(--interactiveTextColor);
 }
 
 #jobs .container ol li a:hover {
   text-decoration: underline;
-}
-
-#jobs .container ol li:nth-of-type(odd) a {
-  color: var(--interactiveTextColor);
 }
 
 /* Contact Section & Footer*/
