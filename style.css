@@ -460,7 +460,16 @@ button:-moz-focusring,
   align-items: center;
 }
 
-#jobs .container ol li:nth-of-type(odd) {
+#jobs .container ol li a {
+  text-decoration: none;
+  color: var(--primaryTextColor);
+}
+
+#jobs .container ol li a:hover {
+  text-decoration: underline;
+}
+
+#jobs .container ol li:nth-of-type(odd) a {
   color: var(--interactiveTextColor);
 }
 
@@ -498,6 +507,10 @@ button:-moz-focusring,
 #contact .container #contacts-container ul li a {
   color: var(--interactiveTextColor);
   text-decoration: none;
+}
+
+#contact .container #contacts-container ul li a:hover {
+  text-decoration: underline;
 }
 
 #contact .container #contacts-container ul li:last-of-type {
