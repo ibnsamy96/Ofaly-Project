@@ -525,7 +525,7 @@ footer {
 @media (max-width: 1200px) {
   /* Header & Hamburger Menu */
   #hamburger-menu {
-    position: absolute;
+    position: fixed;
     top: 30px;
     right: 30px;
   }
