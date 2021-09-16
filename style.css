@@ -512,6 +512,9 @@ footer {
 
 /* Media Query */
 @media (max-width: 1400px) {
+  #hero article h1 {
+    font-size: 65px;
+  }
 }
 
 @media (max-width: 1200px) {
@@ -555,17 +558,14 @@ footer {
   }
 
   #hero article h1 {
-    font-size: 50px;
+    font-size: 75px;
     line-height: 151%;
     text-align: center;
-    margin-top: 20px;
+    margin-top: 30px;
   }
 
   #hero article p {
-    font-size: 20px;
-    line-height: 30px;
-    line-height: 151%;
-    margin-top: 30px;
+    margin-top: 10px;
   }
   /* Gallery Section */
   .page-section#gallery {
@@ -640,6 +640,14 @@ footer {
   .page-section#hero {
     background-size: 1264.34px 655.82px;
     background-position: 0 0;
+  }
+  #hero article h1 {
+    font-size: 50px;
+  }
+  #hero article p {
+    font-size: 20px;
+    line-height: 30px;
+    line-height: 151%;
   }
 
   /* Gallery Section */
