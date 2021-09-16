@@ -116,6 +116,9 @@ const toggleOverlay = ({ isMenu }) => {
 
 overlay.addEventListener("click", toggleOverlay);
 
+const hamburgerMenuBTN = document.querySelector("#hamburger-menu button");
+hamburgerMenuBTN.addEventListener("click", toggleMenu);
+
 const showGalleryImage = (imageNumber) => {
   // TODO fetch all images right after opening the page so that they open fast when clicked
   const { imgLink, imgText } = galleryImages[imageNumber - 1];
@@ -123,20 +126,19 @@ const showGalleryImage = (imageNumber) => {
   clickedImageContainer.querySelector("p").innerText = imgText;
 
   toggleOverlay({ isMenu: false });
+  hamburgerMenuBTN.style.display = "none";
   clickedImageContainer.style.display = "flex";
 };
 
 const hideGalleryImage = () => {
   clickedImageContainer.style.display = "none";
   toggleOverlay({ isMenu: false });
+  hamburgerMenuBTN.style.display = "flex";
 };
 
 clickedImageContainer
   .querySelector("button")
   .addEventListener("click", hideGalleryImage);
-
-const hamburgerMenuBTN = document.querySelector("#hamburger-menu button");
-hamburgerMenuBTN.addEventListener("click", toggleMenu);
 
 galleryImages.forEach((image, index) => {
   console.log(index);
