@@ -359,7 +359,12 @@ button:-moz-focusring,
   cursor: pointer;
 }
 
-#gallery article img {
+#gallery article button img {
+  width: 30px;
+  height: 30px;
+}
+
+#gallery article > img {
   max-width: 90%;
   max-height: 68%;
 }
@@ -654,6 +659,11 @@ footer {
   .page-section#gallery {
     background-size: 1365px 678px;
     background-position: -864px 100%;
+  }
+
+  #gallery article button img {
+    width: 20px;
+    height: 20px;
   }
 
   #gallery article p {
