@@ -16,13 +16,9 @@
     />
   </head>
   <body>
-    <header id="hamburger-menu">
+    <header id="hamburger-menu" class="z-index-2">
       <!-- TODO if an image clicked make that button a cross -->
-      <button
-        class="z-index-2"
-        aria-label="button to toggle the menu"
-        type="button"
-      >
+      <button aria-label="button to toggle the menu" type="button">
         <svg
           width="47"
           height="39"
@@ -55,7 +51,7 @@
         </svg>
       </button>
       <nav>
-        <ul class="z-index-3">
+        <ul>
           <a href="#Ofaly.Club" class="nav-item selected"
             ><li>Ofaly.Club</li></a
           >
@@ -146,7 +142,7 @@
         </div>
       </section>
     </main>
-    <div id="overlay" class="z-index-2"></div>
+    <div id="overlay" class="z-index-1"></div>
     <script src="./app.js" type="module"></script>
   </body>
 </html>
