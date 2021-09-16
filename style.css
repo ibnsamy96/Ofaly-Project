@@ -622,6 +622,11 @@ footer {
     line-height: 52px;
     line-height: 202%;
   }
+
+  /* Gallery Section */
+  #gallery article p {
+    font-size: 30px;
+  }
 }
 
 @media (max-width: 500px) {
