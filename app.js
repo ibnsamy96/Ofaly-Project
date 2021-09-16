@@ -11,9 +11,18 @@ function addImagesToGallery(imageObject) {
   galleryCol.setAttribute("class", "col");
   imgContainer.setAttribute("class", "img-container");
   imgContainer.setAttribute("data-number", imageObject.number);
-  imgContainer.addEventListener("click", (e) =>
-    showGalleryImage(e.target.dataset.number || e.path[1]["dataset"]["number"])
-  );
+  imgContainer.addEventListener("click", (e) => {
+    try {
+      showGalleryImage(e.target.dataset.number);
+    } catch (error) {
+      try {
+        showGalleryImage(e.path[1]["dataset"]["number"]);
+      } catch (error) {
+        showGalleryImage(e.explicitOriginalTarget.parentElement.dataset.number);
+      }
+    }
+  });
+
   galleryImg.setAttribute("class", "gallery-img");
   galleryImgNumber.setAttribute("class", "gallery-img-number");
 
