@@ -724,7 +724,7 @@ footer {
 @media (max-width: 450px) {
 }
 
-@media (max-width: 1536px) and (max-height: 1080px) {
+@media (max-width: 1024px) and (max-height: 1080px) {
   #hero .container {
     padding-top: 100px;
   }
