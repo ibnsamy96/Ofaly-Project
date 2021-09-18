@@ -45,19 +45,6 @@ function addImagesToGallery(imageObject) {
   imgContainer.setAttribute("class", "img-container");
   imgContainer.setAttribute("data-number", imageObject.number);
 
-  if (!CSS.supports("aspect-ratio: 1")) {
-    console.log("no aspect-ratio support");
-    const resizableElementObject = {
-      element: imgContainer,
-      mainRatio: 365 / 404,
-      responsiveRatios: { 1025: 175 / 195 },
-    };
-    imgContainer.style.height = `${getElementHeightByCalculatingAspectRatio(
-      resizableElementObject
-    )}px`;
-    aspectRatioElements.push(resizableElementObject);
-  }
-
   imgContainer.addEventListener("click", (e) => {
     try {
       showGalleryImage(e.target.dataset.number);
@@ -81,6 +68,20 @@ function addImagesToGallery(imageObject) {
   imgContainer.appendChild(galleryImgNumber);
 
   galleryRow.appendChild(galleryCol);
+
+  // specifying gallery images aspect-ratio
+  if (!CSS.supports("aspect-ratio: 1")) {
+    console.log("no aspect-ratio support");
+    const resizableElementObject = {
+      element: imgContainer,
+      mainRatio: 365 / 404,
+      responsiveRatios: { 1025: 175 / 195 },
+    };
+    imgContainer.style.height = `${getElementHeightByCalculatingAspectRatio(
+      resizableElementObject
+    )}px`;
+    aspectRatioElements.push(resizableElementObject);
+  }
 }
 
 const hamburgerNav = document.querySelector("#hamburger-menu nav");
