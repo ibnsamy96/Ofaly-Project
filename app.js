@@ -200,13 +200,13 @@ const showGalleryImage = (imageNumber) => {
 
   toggleOverlay({ isMenu: false });
   hamburgerMenuBTN.style.display = "none";
-  clickedImageContainer.style.display = "flex";
+  clickedImageContainer.style.display = "block";
 };
 
 const hideGalleryImage = () => {
   clickedImageContainer.style.display = "none";
   toggleOverlay({ isMenu: false });
-  hamburgerMenuBTN.style.display = "flex";
+  hamburgerMenuBTN.style.display = "block";
 };
 
 clickedImageContainer
@@ -245,4 +245,10 @@ if (!CSS.supports("aspect-ratio: 1")) {
       });
     }
   });
+}
+
+if (!CSS.supports("backdrop-filter: blur(15px)")) {
+  console.log("no backdrop");
+  overlay.style.opacity = 1;
+  overlay.style.backgroundColor = "rgb(255, 255, 255)";
 }
