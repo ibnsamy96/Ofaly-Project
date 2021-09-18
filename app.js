@@ -52,13 +52,28 @@ function addImagesToGallery(imageObject) {
   imgContainer.setAttribute("data-number", imageObject.number);
 
   imgContainer.addEventListener("click", (e) => {
+    console.log(e);
+    console.log("e.target ->");
+    console.log(e.target);
+
     try {
+      console.log(e.target.dataset);
       showGalleryImage(e.target.dataset.number);
     } catch (error) {
       try {
+        console.log(error);
+        console.log(e.path);
+
         showGalleryImage(e.path[1]["dataset"]["number"]);
       } catch (error) {
-        showGalleryImage(e.explicitOriginalTarget.parentElement.dataset.number);
+        try {
+          console.log(e.explicitOriginalTarget.parentElement);
+          showGalleryImage(
+            e.explicitOriginalTarget.parentElement.dataset.number
+          );
+        } catch (error) {
+          console.log(error);
+        }
       }
     }
   });

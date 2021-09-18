@@ -366,6 +366,7 @@ button:-moz-focusring,
 }
 
 #gallery article {
+  flex: 1;
   display: none;
   position: fixed;
   top: 0;
@@ -384,6 +385,14 @@ button:-moz-focusring,
   -ms-flex-align: center;
   align-items: center;
   overflow: auto;
+}
+
+#gallery article div {
+  display: flex;
+  min-height: min-content;
+  max-width: 90%;
+  margin: auto;
+  flex-direction: column;
 }
 #gallery article button {
   position: absolute;
@@ -409,11 +418,11 @@ button:-moz-focusring,
   height: 30px;
 }
 
-#gallery article > img {
+#gallery article div > img {
   max-width: 90%;
   /* max-height: 68%; */
 }
-#gallery article p {
+#gallery article div p {
   max-width: 90%;
   font-style: normal;
   font-size: 35px;
