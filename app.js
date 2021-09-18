@@ -1,21 +1,27 @@
 import { galleryImages } from "./gallery-images.js";
 
 const aspectRatioElements = [];
+let lastWidth;
+
+function getDocumentWidth() {
+  return (
+    window.innerWidth ||
+    document.documentElement.clientWidth ||
+    document.body.clientWidth
+  );
+}
 
 function getElementHeightByCalculatingAspectRatio({
   element,
   mainRatio,
   responsiveRatios,
 }) {
-  const documentWidth =
-    window.innerWidth ||
-    document.documentElement.clientWidth ||
-    document.body.clientWidth;
+  lastWidth = getDocumentWidth();
 
   let ratio = mainRatio;
 
   for (let maxWidthValue in responsiveRatios) {
-    if (parseFloat(documentWidth) <= parseInt(maxWidthValue)) {
+    if (parseFloat(lastWidth) <= parseInt(maxWidthValue)) {
       ratio = responsiveRatios[maxWidthValue];
     }
   }
@@ -210,12 +216,14 @@ linksElements.forEach((linkElement) => {
 
 if (!CSS.supports("aspect-ratio: 1")) {
   window.addEventListener("resize", () => {
-    aspectRatioElements.forEach((elementObject) => {
-      elementObject[
-        "element"
-      ].style.height = `${getElementHeightByCalculatingAspectRatio(
-        elementObject
-      )}px`;
-    });
+    if (lastWidth !== getDocumentWidth()) {
+      aspectRatioElements.forEach((elementObject) => {
+        elementObject[
+          "element"
+        ].style.height = `${getElementHeightByCalculatingAspectRatio(
+          elementObject
+        )}px`;
+      });
+    }
   });
 }
