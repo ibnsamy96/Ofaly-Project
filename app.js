@@ -12,13 +12,11 @@ function getElementHeightByCalculatingAspectRatio({
     document.documentElement.clientWidth ||
     document.body.clientWidth;
 
-  let ratio = 0;
+  let ratio = mainRatio;
 
   for (let maxWidthValue in responsiveRatios) {
     if (parseFloat(documentWidth) <= parseInt(maxWidthValue)) {
       ratio = responsiveRatios[maxWidthValue];
-    } else {
-      ratio = mainRatio;
     }
   }
 
@@ -29,6 +27,7 @@ function getElementHeightByCalculatingAspectRatio({
   );
   const elementHeight = elementWidth * (1 / ratio);
 
+  console.log(elementWidth);
   console.log(elementHeight);
 
   return elementHeight;
@@ -214,7 +213,7 @@ if (!CSS.supports("aspect-ratio: 1")) {
       elementObject[
         "element"
       ].style.height = `${getElementHeightByCalculatingAspectRatio(
-        resizableElementObject
+        elementObject
       )}px`;
     });
   });
