@@ -29,16 +29,9 @@ function getElementHeightByCalculatingAspectRatio({
   );
   const elementHeight = elementWidth * (1 / ratio);
 
-  return elementHeight;
-}
+  console.log(elementHeight);
 
-if (!CSS.supports("aspect-ratio: 1")) {
-  window.addEventListener("resize", () => {
-    aspectRatioElements.forEach((elementObject) => {
-      elementObject["element"].style.height =
-        getElementHeightByCalculatingAspectRatio(elementObject);
-    });
-  });
+  return elementHeight;
 }
 
 function addImagesToGallery(imageObject) {
@@ -213,3 +206,12 @@ linksElements.forEach((linkElement) => {
     }
   });
 });
+
+if (!CSS.supports("aspect-ratio: 1")) {
+  window.addEventListener("resize", () => {
+    aspectRatioElements.forEach((elementObject) => {
+      elementObject["element"].style.height =
+        getElementHeightByCalculatingAspectRatio(elementObject);
+    });
+  });
+}
