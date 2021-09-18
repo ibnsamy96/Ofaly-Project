@@ -47,6 +47,7 @@ function addImagesToGallery(imageObject) {
   imgContainer.setAttribute("data-number", imageObject.number);
 
   if (!CSS.supports("aspect-ratio: 1")) {
+    console.log("no aspect-ratio support");
     const resizableElementObject = {
       element: imgContainer,
       mainRatio: 365 / 404,
