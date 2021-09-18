@@ -53,9 +53,9 @@ function addImagesToGallery(imageObject) {
       mainRatio: 365 / 404,
       responsiveRatios: { 1025: 175 / 195 },
     };
-    imgContainer.style.height = getElementHeightByCalculatingAspectRatio(
+    imgContainer.style.height = `${getElementHeightByCalculatingAspectRatio(
       resizableElementObject
-    );
+    )}px`;
     aspectRatioElements.push(resizableElementObject);
   }
 
@@ -211,8 +211,11 @@ linksElements.forEach((linkElement) => {
 if (!CSS.supports("aspect-ratio: 1")) {
   window.addEventListener("resize", () => {
     aspectRatioElements.forEach((elementObject) => {
-      elementObject["element"].style.height =
-        getElementHeightByCalculatingAspectRatio(elementObject);
+      elementObject[
+        "element"
+      ].style.height = `${getElementHeightByCalculatingAspectRatio(
+        resizableElementObject
+      )}px`;
     });
   });
 }
