@@ -60,12 +60,16 @@ function addImagesToGallery(imageObject) {
       console.log(e.target.dataset);
       showGalleryImage(e.target.dataset.number);
     } catch (error) {
-      try {
-        console.log(error);
-        console.log(e.path);
+      console.log(error);
 
-        showGalleryImage(e.path[1]["dataset"]["number"]);
+      try {
+        console.log(e.target.parentElement);
+        console.log(e.target.parentElement.dataset);
+
+        showGalleryImage(e.target.parentElement.dataset.number);
       } catch (error) {
+        console.log(error);
+
         try {
           console.log(e.explicitOriginalTarget.parentElement);
           showGalleryImage(
