@@ -1,5 +1,46 @@
 import { galleryImages } from "./gallery-images.js";
 
+const aspectRatioElements = [];
+
+function getElementHeightByCalculatingAspectRatio({
+  element,
+  mainRatio,
+  responsiveRatios,
+}) {
+  const documentWidth =
+    window.innerWidth ||
+    document.documentElement.clientWidth ||
+    document.body.clientWidth;
+
+  let ratio = 0;
+
+  for (let maxWidthValue in responsiveRatios) {
+    if (parseFloat(documentWidth) <= parseInt(maxWidthValue)) {
+      ratio = responsiveRatios[maxWidthValue];
+    } else {
+      ratio = mainRatio;
+    }
+  }
+
+  console.log(ratio);
+
+  const elementWidth = parseFloat(
+    window.getComputedStyle(element).getPropertyValue("width")
+  );
+  const elementHeight = elementWidth * (1 / ratio);
+
+  return elementHeight;
+}
+
+if (!CSS.supports("aspect-ratio: 1")) {
+  window.addEventListener("resize", () => {
+    aspectRatioElements.forEach((elementObject) => {
+      elementObject["element"].style.height =
+        getElementHeightByCalculatingAspectRatio(elementObject);
+    });
+  });
+}
+
 function addImagesToGallery(imageObject) {
   const galleryRow = document.querySelector("#gallery .container .row");
 
@@ -11,6 +52,19 @@ function addImagesToGallery(imageObject) {
   galleryCol.setAttribute("class", "col");
   imgContainer.setAttribute("class", "img-container");
   imgContainer.setAttribute("data-number", imageObject.number);
+
+  if (!CSS.supports("aspect-ratio: 1")) {
+    const resizableElementObject = {
+      element: imgContainer,
+      mainRatio: 365 / 404,
+      responsiveRatios: { 1025: 175 / 195 },
+    };
+    imgContainer.style.height = getElementHeightByCalculatingAspectRatio(
+      resizableElementObject
+    );
+    aspectRatioElements.push(resizableElementObject);
+  }
+
   imgContainer.addEventListener("click", (e) => {
     try {
       showGalleryImage(e.target.dataset.number);

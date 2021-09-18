@@ -472,6 +472,7 @@ button:-moz-focusring,
 
 #gallery .row .col .img-container {
   width: 80%;
+  /* min-height: 88.5%; */
   aspect-ratio: 365/404;
   display: -webkit-box;
   display: -ms-flexbox;
@@ -743,6 +744,7 @@ footer {
 
   #gallery .row .col .img-container {
     width: 100%;
+    /* min-height: 111.24%; */
     aspect-ratio: 175/195;
   }
 
