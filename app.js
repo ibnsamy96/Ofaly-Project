@@ -118,18 +118,18 @@ const toggleMenu = () => {
   let newOpacity;
   let newTop;
 
-  if (oldState === "block") {
+  if (oldState === "flex") {
     newDisplay = "none";
     newTop = "10px";
     newOpacity = 0;
   } else {
     toggleOverlay({ isMenu: true });
-    newDisplay = "block";
+    newDisplay = "flex";
     newTop = "0px";
     newOpacity = 1;
   }
 
-  if (oldState === "block") {
+  if (oldState === "flex") {
     hamburgerNavUL.style.opacity = newOpacity;
     hamburgerNavUL.style.top = newTop;
     setTimeout(() => {
