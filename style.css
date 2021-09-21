@@ -645,6 +645,10 @@ button:-moz-focusring,
   margin-left: auto;
 }
 
+#gallery .row .col .img-container.m-auto {
+  margin: auto;
+}
+
 #gallery .row .col .img-container .gallery-img {
   -webkit-box-flex: 2;
   -ms-flex-positive: 2;
@@ -698,6 +702,10 @@ button:-moz-focusring,
   #gallery .row .col .img-container {
     width: 100%;
     aspect-ratio: 175/195;
+  }
+
+  #gallery .row .col .img-container.m-auto {
+    margin: unset;
   }
 
   #gallery .row .col:nth-of-type(odd) .img-container {

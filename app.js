@@ -98,13 +98,6 @@ const toggleOverlay = ({ isMenu }) => {
         ? "blurry-effect"
         : "solid-effect";
       overlay.classList.add(overlayBGClass);
-
-      // if no backdrop-filter: blur() support, then update the background of the overlay to be white
-      // if (!CSS.supports("backdrop-filter: blur(15px)")) {
-      //   console.log("no backdrop");
-      //   // overlay.style.opacity = 1;
-      //   overlay.style.backgroundColor = "";
-      // }
     }
     togglePageScroll("hide-scroll");
     newOverlayState = "block";
@@ -259,4 +252,18 @@ if (!CSS.supports("aspect-ratio: 1")) {
       });
     }
   });
+}
+
+// if images isn't 3,6,9,12... then add 'margin:auto' to the last row images
+if (galleryImages.length % 3 !== 0) {
+  console.log(galleryImages);
+  const imagesTempVar = [
+    ...document.querySelectorAll("#gallery .row .col:nth-of-type(3n-2)"),
+  ];
+
+  const lastImageContainer =
+    imagesTempVar[imagesTempVar.length - 1].querySelector(".img-container");
+
+  console.log(lastImageContainer);
+  lastImageContainer.classList.add("m-auto");
 }
