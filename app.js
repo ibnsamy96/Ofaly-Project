@@ -1,8 +1,11 @@
 import { galleryImages } from "./gallery-images.js";
 
-const aspectRatioElements = [];
+// console.log = () => {}; // to hide all logs
+
+// Holds the document width => helpful to be checked to maintain responsiveness
 let lastWidth;
 
+// returns the current document width
 function getDocumentWidth() {
   return (
     window.innerWidth ||
@@ -11,6 +14,98 @@ function getDocumentWidth() {
   );
 }
 
+// toggles the body overflow => helpful to stop scrolling after clicking gallery image or the hamburger-menu
+const togglePageScroll = (neededAction) => {
+  if (neededAction === "show-scroll") {
+    document.body.style.overflow = "visible";
+  } else if (neededAction === "hide-scroll") {
+    document.body.style.overflow = "hidden";
+  }
+};
+
+const hamburgerNav = document.querySelector("#hamburger-menu nav");
+const hamburgerNavUL = document.querySelector("#hamburger-menu nav ul");
+const hamburgerMenuBTN = document.querySelector("#hamburger-menu button");
+const linksElements = [
+  ...document.querySelectorAll("#hamburger-menu nav ul .nav-item"),
+];
+
+// toggles the hamburger-menu and its transparent overlay
+const toggleMenu = () => {
+  const oldMenuState = hamburgerNav.style.display;
+
+  if (oldMenuState === "flex") {
+    hamburgerNavUL.style.opacity = 0;
+    hamburgerNavUL.style.top = "10px";
+    setTimeout(() => {
+      hamburgerNav.style.display = "none";
+    }, 500);
+  } else {
+    toggleOverlay({ isMenu: true });
+    hamburgerNav.style.display = "flex";
+    setTimeout(() => {
+      hamburgerNavUL.style.opacity = 1;
+      hamburgerNavUL.style.top = "0px";
+    }, 100);
+  }
+};
+
+hamburgerMenuBTN.addEventListener("click", toggleMenu);
+
+// this loop is made to toggleOverlay before navigating to another link
+linksElements.forEach((linkElement) => {
+  linkElement.addEventListener("click", (e) => {
+    e.preventDefault();
+    toggleOverlay({ isMenu: true });
+    const link = e.target.href || e.target.parentElement.href;
+    if (window.location.href !== link) {
+      window.location.href = link;
+    }
+  });
+});
+
+const overlay = document.querySelector("#overlay");
+
+// show the overlay and hides it
+const toggleOverlay = ({ isMenu }) => {
+  togglePageScroll();
+
+  const oldOverlayState = overlay.style.display;
+  let newOverlayState;
+
+  if (oldOverlayState === "block") {
+    // overlay was clicked => hide it and do some actions
+    if (overlay.dataset.state === "menu-opened") {
+      // if overlay is clicked and the menu is open, toggle the menu to close it before removing the overlay
+      toggleMenu();
+    } else {
+      // if overlay is clicked and an image container is open, remove the blurry-effect class before removing the overlay
+      overlay.classList.remove("blurry-effect");
+    }
+    overlay.removeAttribute("data-state");
+    togglePageScroll("show-scroll");
+    newOverlayState = "none";
+  } else {
+    // other element was clicked and needs an overlay => show it and do tell type of element
+    if (isMenu) {
+      overlay.setAttribute("data-state", "menu-opened");
+    } else {
+      overlay.setAttribute("data-state", "img-shown");
+      overlay.classList.add("blurry-effect");
+    }
+    togglePageScroll("hide-scroll");
+    newOverlayState = "block";
+  }
+
+  overlay.style.display = newOverlayState;
+};
+
+overlay.addEventListener("click", toggleOverlay);
+
+/*
+ returns element height based on its width and its specified aspect-ratio
+ => helpful to replace aspect-ratio css property as it doesn't work on Safari
+*/
 function getElementHeightByCalculatingAspectRatio({
   element,
   mainRatio,
@@ -39,7 +134,14 @@ function getElementHeightByCalculatingAspectRatio({
   return elementHeight;
 }
 
-function addImagesToGallery(imageObject) {
+// holds all elements that have aspect ratio to keep track of them at resizing the page
+const resizableElementWithAspectRatio = [];
+
+/*
+takes an imageObject:{ number , thumbnailLink , imgLink , imgText} as an argument, creates element for the image
+and and adds it to the gallery section in the page
+*/
+function addImageToGallery(imageObject) {
   const galleryRow = document.querySelector("#gallery .container .row");
 
   const galleryCol = document.createElement("div");
@@ -49,31 +151,18 @@ function addImagesToGallery(imageObject) {
 
   galleryCol.setAttribute("class", "col");
   imgContainer.setAttribute("class", "img-container");
-  imgContainer.setAttribute("data-number", imageObject.number);
+  imgContainer.setAttribute("data-index", imageObject.index);
 
   imgContainer.addEventListener("click", (e) => {
-    console.log(e);
-    console.log("e.target ->");
-    console.log(e.target);
-
     try {
-      console.log(e.target.dataset);
-      showGalleryImage(e.target.dataset.number);
+      showGalleryImage(e.target.dataset.index);
     } catch (error) {
-      console.log(error);
-
       try {
-        console.log(e.target.parentElement);
-        console.log(e.target.parentElement.dataset);
-
-        showGalleryImage(e.target.parentElement.dataset.number);
+        showGalleryImage(e.target.parentElement.dataset.index);
       } catch (error) {
-        console.log(error);
-
         try {
-          console.log(e.explicitOriginalTarget.parentElement);
           showGalleryImage(
-            e.explicitOriginalTarget.parentElement.dataset.number
+            e.explicitOriginalTarget.parentElement.dataset.index
           );
         } catch (error) {
           console.log(error);
@@ -86,7 +175,7 @@ function addImagesToGallery(imageObject) {
   galleryImgNumber.setAttribute("class", "gallery-img-number");
 
   galleryImg.style.backgroundImage = `url('${imageObject.thumbnailLink}')`;
-  galleryImgNumber.innerText = imageObject.number;
+  galleryImgNumber.innerText = imageObject.index + 1;
 
   galleryCol.appendChild(imgContainer);
   imgContainer.appendChild(galleryImg);
@@ -94,7 +183,7 @@ function addImagesToGallery(imageObject) {
 
   galleryRow.appendChild(galleryCol);
 
-  // specifying gallery images aspect-ratio
+  // specifying gallery images aspect-ratio if the browser doesn't support aspect-ratio css property
   if (!CSS.supports("aspect-ratio: 1")) {
     console.log("no aspect-ratio support");
     const resizableElementObject = {
@@ -105,96 +194,19 @@ function addImagesToGallery(imageObject) {
     imgContainer.style.height = `${getElementHeightByCalculatingAspectRatio(
       resizableElementObject
     )}px`;
-    aspectRatioElements.push(resizableElementObject);
+
+    // adding the image to resizableElementWithAspectRatio
+    resizableElementWithAspectRatio.push(resizableElementObject);
   }
 }
 
-const hamburgerNav = document.querySelector("#hamburger-menu nav");
-const hamburgerNavUL = document.querySelector("#hamburger-menu nav ul");
-
-const toggleMenu = () => {
-  const oldState = hamburgerNav.style.display;
-  let newDisplay;
-  let newOpacity;
-  let newTop;
-
-  if (oldState === "flex") {
-    newDisplay = "none";
-    newTop = "10px";
-    newOpacity = 0;
-  } else {
-    toggleOverlay({ isMenu: true });
-    newDisplay = "flex";
-    newTop = "0px";
-    newOpacity = 1;
-  }
-
-  if (oldState === "flex") {
-    hamburgerNavUL.style.opacity = newOpacity;
-    hamburgerNavUL.style.top = newTop;
-    setTimeout(() => {
-      hamburgerNav.style.display = newDisplay;
-    }, 500);
-  } else {
-    hamburgerNav.style.display = newDisplay;
-    setTimeout(() => {
-      hamburgerNavUL.style.opacity = newOpacity;
-      hamburgerNavUL.style.top = newTop;
-    }, 100);
-  }
-};
-
+// holds the clicked gallery image container div
 const clickedImageContainer = document.querySelector(
   "#clicked-image-container"
 );
-
-const overlay = document.querySelector("#overlay");
-
-const togglePageScroll = (neededAction) => {
-  if (neededAction === "show-scroll") {
-    document.body.style.overflow = "visible";
-  } else if (neededAction === "hide-scroll") {
-    document.body.style.overflow = "hidden";
-  }
-};
-
-const toggleOverlay = ({ isMenu }) => {
-  togglePageScroll();
-
-  const oldState = overlay.style.display;
-  let newState;
-
-  if (oldState === "block") {
-    if (overlay.dataset.state === "menu-opened") {
-      toggleMenu();
-    } else {
-      overlay.classList.remove("blurry-effect");
-    }
-    overlay.removeAttribute("data-state");
-    togglePageScroll("show-scroll");
-    newState = "none";
-  } else {
-    if (isMenu) {
-      overlay.setAttribute("data-state", "menu-opened");
-    } else {
-      overlay.setAttribute("data-state", "img-shown");
-      overlay.classList.add("blurry-effect");
-    }
-    togglePageScroll("hide-scroll");
-    newState = "block";
-  }
-
-  overlay.style.display = newState;
-};
-
-overlay.addEventListener("click", toggleOverlay);
-
-const hamburgerMenuBTN = document.querySelector("#hamburger-menu button");
-hamburgerMenuBTN.addEventListener("click", toggleMenu);
-
-const showGalleryImage = (imageNumber) => {
-  // TODO fetch all images right after opening the page so that they open fast when clicked
-  const { imgLink, imgText } = galleryImages[imageNumber - 1];
+// at clicking on a gallery image, show it in a large size
+const showGalleryImage = (imageIndex) => {
+  const { imgLink, imgText } = galleryImages[imageIndex];
   clickedImageContainer.querySelector("img").setAttribute("src", imgLink);
   clickedImageContainer.querySelector("p").innerText = imgText;
 
@@ -203,6 +215,7 @@ const showGalleryImage = (imageNumber) => {
   clickedImageContainer.style.display = "block";
 };
 
+// at closing the large size container, hide every thing
 const hideGalleryImage = () => {
   clickedImageContainer.style.display = "none";
   toggleOverlay({ isMenu: false });
@@ -210,33 +223,21 @@ const hideGalleryImage = () => {
 };
 
 clickedImageContainer
-  .querySelector("button")
+  .querySelector("button#hide-large-img")
   .addEventListener("click", hideGalleryImage);
 
+// adds all images from 'galleryImages' to gallery section
 galleryImages.forEach((image, index) => {
   console.log(index);
-  const imageObject = { number: index + 1, ...image };
-  addImagesToGallery(imageObject);
+  const imageObject = { index, ...image };
+  addImageToGallery(imageObject);
 });
 
-const linksElements = [
-  ...document.querySelectorAll("#hamburger-menu nav ul .nav-item"),
-];
-linksElements.forEach((linkElement) => {
-  linkElement.addEventListener("click", (e) => {
-    e.preventDefault();
-    toggleOverlay({ isMenu: true });
-    const link = e.target.href || e.path[1]["href"];
-    if (window.location.href !== link) {
-      window.location.href = link;
-    }
-  });
-});
-
+// if no aspect-ratio support, then add event listener to window to update images height using getElementHeightByCalculatingAspectRatio()
 if (!CSS.supports("aspect-ratio: 1")) {
   window.addEventListener("resize", () => {
     if (lastWidth !== getDocumentWidth()) {
-      aspectRatioElements.forEach((elementObject) => {
+      resizableElementWithAspectRatio.forEach((elementObject) => {
         elementObject[
           "element"
         ].style.height = `${getElementHeightByCalculatingAspectRatio(
@@ -247,6 +248,7 @@ if (!CSS.supports("aspect-ratio: 1")) {
   });
 }
 
+// if no backdrop-filter: blur() support, then update the background of the overlay to be white
 if (!CSS.supports("backdrop-filter: blur(15px)")) {
   console.log("no backdrop");
   overlay.style.opacity = 1;
