@@ -23,16 +23,4 @@ export const launcherImages = [
     imgLink: "./assets/images/6.png",
     hrefValue: "./assets/images/6.png",
   },
-  {
-    imgLink: "./assets/images/6.png",
-    hrefValue: "./assets/images/6.png",
-  },
-  {
-    imgLink: "./assets/images/6.png",
-    hrefValue: "./assets/images/6.png",
-  },
-  {
-    imgLink: "./assets/images/6.png",
-    hrefValue: "./assets/images/6.png",
-  },
 ];

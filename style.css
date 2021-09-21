@@ -1,15 +1,44 @@
+/* ---------------------------------------------
+Table of contents
+------------------------------------------------
+01. reset css
+02. global styles
+03. launcher
+---------------------------------------------
+Each section has its default styles and
+responsiveness ones.
+Max-Width Checkpoint 1 => 1536px 
+Max-Width Checkpoint 2 => 1200px
+Max-Width Checkpoint 3 => 1025px
+Max-Width Checkpoint 4 => 900px
+Max-Width Checkpoint 5 => 500px
+--------------------------------------------- */
+
+/* 
+---------------------------------------------
+01. Reset css
+--------------------------------------------- 
+*/
+
 * {
   margin: 0;
   padding: 0;
+  box-sizing: border-box;
 }
 
 html {
   height: 100%;
 }
+
 body {
   min-height: 100%;
 }
 
+/* 
+---------------------------------------------
+02. Global Styles
+--------------------------------------------- 
+*/
 .container {
   width: 90%;
   margin: auto;
@@ -30,6 +59,12 @@ body {
   -ms-flex-direction: row;
   flex-direction: row;
 }
+
+/* 
+---------------------------------------------
+04. Launcher
+--------------------------------------------- 
+*/
 
 .page-section#launcher {
   background-image: url(./assets/background.png);

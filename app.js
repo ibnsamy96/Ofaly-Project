@@ -1,9 +1,11 @@
 import { launcherImages } from "./launcher-images.js";
 
-const imgsContainersObjects = [];
-let lastWidth;
-let lastClickedImage;
+// console.log = () => {}; // to hide all logs
 
+// Holds the document width => helpful to be checked to maintain responsiveness
+let lastWidth;
+
+// returns the current document width
 function getDocumentWidth() {
   return (
     window.innerWidth ||
@@ -12,27 +14,17 @@ function getDocumentWidth() {
   );
 }
 
-function getElementHeightByCalculatingAspectRatio({
-  element,
-  mainRatio,
-  responsiveRatios,
-}) {
+/*
+ returns element height based on its width and its specified aspect-ratio
+ => helpful to replace aspect-ratio css property as it doesn't work on Safari
+*/
+function getElementHeightByCalculatingAspectRatio({ element, mainRatio }) {
   lastWidth = getDocumentWidth();
-
-  let ratio = mainRatio;
-
-  for (let maxWidthValue in responsiveRatios) {
-    if (parseFloat(lastWidth) <= parseInt(maxWidthValue)) {
-      ratio = responsiveRatios[maxWidthValue];
-    }
-  }
-
-  console.log(ratio);
 
   const elementWidth = parseFloat(
     window.getComputedStyle(element).getPropertyValue("width")
   );
-  const elementHeight = elementWidth * (1 / ratio);
+  const elementHeight = elementWidth * (1 / mainRatio);
 
   console.log(elementWidth);
   console.log(elementHeight);
@@ -40,6 +32,12 @@ function getElementHeightByCalculatingAspectRatio({
   return elementHeight;
 }
 
+let lastClickedImage;
+const imgsContainersObjects = [];
+/*
+takes an imageObject:{ index , hrefValue , imgLink } as an argument, creates element for the image
+and and adds it to the gallery section in the page
+*/
 function addImagesToLauncher(imageObject) {
   const launcherRow = document.querySelector("#launcher .container .row");
 
@@ -50,25 +48,19 @@ function addImagesToLauncher(imageObject) {
   launcherCol.setAttribute("class", "col");
   imgContainer.setAttribute("class", "img-container");
   imgContainer.setAttribute("href", imageObject.hrefValue);
-  imgContainer.setAttribute("data-number", imageObject.number);
+  imgContainer.setAttribute("data-index", imageObject.index);
 
   launcherImg.setAttribute("class", "launcher-img");
   launcherImg.style.backgroundImage = `url('${imageObject.imgLink}')`;
   launcherImg.addEventListener("click", (e) => {
-    // console.log(this);
-    // console.log("e.target ->");
     e.preventDefault();
-    console.log(e.target);
-
     try {
       lastClickedImage.style.borderColor = "transparent";
     } catch (error) {}
-
     lastClickedImage = e.target;
     lastClickedImage.style.borderColor = "black";
-
     setTimeout(() => {
-      window.location.href = imageObject.hrefValue;
+      // window.location.href = imageObject.hrefValue;
     }, 200);
   });
 
@@ -83,7 +75,6 @@ function addImagesToLauncher(imageObject) {
     const elementObject = {
       element: imgContainer,
       mainRatio: 1,
-      responsiveRatios: {},
     };
     imgContainer.style.height = `${getElementHeightByCalculatingAspectRatio(
       elementObject
@@ -92,12 +83,14 @@ function addImagesToLauncher(imageObject) {
   }
 }
 
+// adds all images from 'launcherImages' to the launcher
 launcherImages.forEach((image, index) => {
   console.log(index);
-  const imageObject = { number: index + 1, ...image };
+  const imageObject = { index, ...image };
   addImagesToLauncher(imageObject);
 });
 
+// if images isn't 3,6,9,12... then add 'margin:auto' to the last row images
 if (launcherImages.length % 3 !== 0) {
   console.log(launcherImages);
   const imagesTempVar = [
@@ -111,6 +104,7 @@ if (launcherImages.length % 3 !== 0) {
   lastImageContainer.classList.add("m-auto");
 }
 
+// if no aspect-ratio support, then add event listener to window to update images height using getElementHeightByCalculatingAspectRatio()
 if (!CSS.supports("aspect-ratio: 1")) {
   window.addEventListener("resize", () => {
     if (lastWidth !== getDocumentWidth()) {
