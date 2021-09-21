@@ -1,6 +1,6 @@
 import { galleryImages } from "./gallery-images.js";
 
-// console.log = () => {}; // to hide all logs
+console.log = () => {}; // to hide all logs
 
 // Holds the document width => helpful to be checked to maintain responsiveness
 let lastWidth;
