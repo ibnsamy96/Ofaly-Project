@@ -168,7 +168,7 @@ const toggleOverlay = ({ isMenu }) => {
     if (overlay.dataset.state === "menu-opened") {
       toggleMenu();
     } else {
-      overlay.classList.remove("blurryEffect");
+      overlay.classList.remove("blurry-effect");
     }
     overlay.removeAttribute("data-state");
     togglePageScroll("show-scroll");
@@ -178,7 +178,7 @@ const toggleOverlay = ({ isMenu }) => {
       overlay.setAttribute("data-state", "menu-opened");
     } else {
       overlay.setAttribute("data-state", "img-shown");
-      overlay.classList.add("blurryEffect");
+      overlay.classList.add("blurry-effect");
     }
     togglePageScroll("hide-scroll");
     newState = "block";
