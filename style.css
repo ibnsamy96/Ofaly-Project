@@ -35,7 +35,7 @@ body {
 }
 
 .page-section#gallery {
-  background-image: url(./assets/backgrounds/2.png);
+  background-image: url(./assets/background.png);
   background-color: var(--secondaryBackgroundColor);
   background-size: 100% auto;
   background-position: right bottom;
