@@ -1,7 +1,32 @@
+/* ---------------------------------------------
+Table of contents
+------------------------------------------------
+01. root variables
+02. reset css
+03. global styles
+04. overlay
+05. hamburger-menu & hero
+06. gallery
+07. jobs
+08. contact & footer 
+---------------------------------------------
+Each section has its default styles and
+responsiveness ones.
+Max-Width Checkpoint 1 => 1536px 
+Max-Width Checkpoint 2 => 1200px
+Max-Width Checkpoint 3 => 1025px
+Max-Width Checkpoint 4 => 900px
+Max-Width Checkpoint 5 => 500px
+--------------------------------------------- */
+
+/* 
+---------------------------------------------
+01. Root Variables
+--------------------------------------------- 
+*/
 :root {
   --primaryBrandColor: #b22519;
   --primaryTextColor: #000000;
-  /* TODO use the next color for hero links, contacts, jobs */
   --interactiveTextColor: #437cb7;
   --primaryBackgroundColor: rgb(249, 249, 249);
   --secondaryBackgroundColor: rgb(255, 255, 255);
@@ -9,19 +34,21 @@
   --primaryTextFontFamily: "Cairo", sans-serif;
 }
 
-/* Global Rules */
-
+/* 
+---------------------------------------------
+02. Reset css
+--------------------------------------------- 
+*/
 * {
   margin: 0;
   padding: 0;
   -webkit-box-sizing: border-box;
   box-sizing: border-box;
-  font-family: var(--primaryTextFontFamily);
 }
 
 html {
-  line-height: 1.15; /* 1 */
-  -webkit-text-size-adjust: 100%; /* 2 */
+  line-height: 1.15;
+  -webkit-text-size-adjust: 100%;
   height: 100%;
 }
 
@@ -44,26 +71,24 @@ a {
   background-color: transparent;
 }
 abbr[title] {
-  border-bottom: none; /* 1 */
-  text-decoration: underline; /* 2 */
+  border-bottom: none;
+  text-decoration: underline;
   -webkit-text-decoration: underline dotted;
-  text-decoration: underline dotted; /* 2 */
+  text-decoration: underline dotted;
 }
 img {
   border-style: none;
 }
 button {
-  font-family: inherit; /* 1 */
-  font-size: 100%; /* 1 */
-  line-height: 1.15; /* 1 */
-  margin: 0; /* 2 */
+  font-family: inherit;
+  font-size: 100%;
+  line-height: 1.15;
+  margin: 0;
 }
 button {
-  /* 1 */
   overflow: visible;
 }
 button {
-  /* 1 */
   text-transform: none;
 }
 button,
@@ -83,7 +108,14 @@ button:-moz-focusring,
   display: none;
 }
 
-/* Global Classes */
+/* 
+---------------------------------------------
+03. Global Styles
+--------------------------------------------- 
+*/
+* {
+  font-family: var(--primaryTextFontFamily);
+}
 
 .container {
   /* max-width: 1720px; */
@@ -146,7 +178,30 @@ button:-moz-focusring,
   line-height: 52px;
 }
 
-/* The widely used Overlay */
+/*---- responsiveness ----*/
+
+@media (max-width: 500px) {
+  .section-h1 {
+    font-size: 50px;
+    line-height: 94px;
+  }
+
+  .section-h2 {
+    font-size: 20px;
+    line-height: 37px;
+  }
+
+  .section-p {
+    font-size: 20px;
+    line-height: 30px;
+  }
+}
+
+/* 
+---------------------------------------------
+04. Overlay
+--------------------------------------------- 
+*/
 #overlay {
   position: fixed; /* Sit on top of the page content */
   display: none; /* Hidden by default */
@@ -156,11 +211,9 @@ button:-moz-focusring,
   left: 0;
   right: 0;
   bottom: 0;
-
-  /* cursor: pointer; Add a pointer on hover */
 }
 
-.blurryEffect {
+.blurry-effect {
   background-color: rgba(
     255,
     255,
@@ -173,8 +226,16 @@ button:-moz-focusring,
   backdrop-filter: blur(15px) !important;
 }
 
-/* Header & Hamburger Menu */
+.solid-effect {
+  background-color: rgb(255, 255, 255);
+}
+/* 
+---------------------------------------------
+05. Hamburger Menu & Hero Section
+--------------------------------------------- 
+*/
 
+/* Hamburger Menu */
 #hamburger-menu {
   position: absolute;
   top: 72px;
@@ -329,22 +390,19 @@ button:-moz-focusring,
 }
 
 #hero article h1 {
-  font-family: "Days One";
   font-style: normal;
   font-weight: 400;
   font-size: 97px;
   line-height: 147px;
   color: var(--primaryBrandColor);
-  -webkit-touch-callout: none; /* iOS Safari */
-  -webkit-user-select: none; /* Safari */ /* Konqueror HTML */
-  -moz-user-select: none; /* Old versions of Firefox */
-  -ms-user-select: none; /* Internet Explorer/Edge */
-  user-select: none; /* Non-prefixed version, currently
-                                  supported by Chrome, Edge, Opera and Firefox */
+  -webkit-touch-callout: none;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
 }
 
 #hero article p {
-  font-family: Cairo;
   font-style: normal;
   font-weight: 400;
   font-size: 35px;
@@ -356,8 +414,111 @@ button:-moz-focusring,
   color: var(--interactiveTextColor);
 }
 
-/* Gallery Section */
+/*---- responsiveness ----*/
+@media (max-width: 1536px) {
+  #hero #img-container.col {
+    width: 50%;
+  }
+  #hero article.col {
+    width: 48%;
+  }
 
+  #hero article h1 {
+    font-size: 65px;
+  }
+}
+
+@media (max-width: 1200px) {
+  #hamburger-menu {
+    position: fixed;
+    top: 30px;
+    right: 30px;
+  }
+}
+
+@media (max-width: 1025px) {
+  #hamburger-menu button svg {
+    -webkit-transform: scale(0.51);
+    -ms-transform: scale(0.51);
+    transform: scale(0.51);
+  }
+  #hamburger-menu nav ul {
+    --paddingX: 30px;
+    --paddingY: 31px;
+  }
+  #hamburger-menu nav ul .nav-item {
+    font-size: 26px;
+    line-height: 52.49px;
+  }
+  /* Hero Section */
+  #hero .row {
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: normal;
+    -ms-flex-direction: column;
+    flex-direction: column;
+  }
+
+  #hero #img-container.col,
+  #hero article.col {
+    width: 100%;
+  }
+
+  #hero #img-container img {
+    width: 100%;
+  }
+
+  #hero article h1 {
+    font-size: 75px;
+    line-height: 151%;
+    text-align: center;
+    margin-top: 30px;
+  }
+
+  #hero article p {
+    margin-top: 10px;
+  }
+}
+
+@media (max-width: 900px) {
+  #hamburger-menu nav ul .nav-item {
+    font-size: 26px;
+    line-height: 52px;
+    line-height: 202%;
+  }
+}
+
+@media (max-width: 500px) {
+  .page-section#hero {
+    background-size: 1264.34px 655.82px;
+    background-position: 0 0;
+  }
+  #hero article h1 {
+    font-size: 50px;
+  }
+  #hero article p {
+    font-size: 20px;
+    line-height: 30px;
+    line-height: 151%;
+  }
+}
+
+@media (max-width: 1024px) and (max-height: 1080px) {
+  #hero .container {
+    padding-top: 100px;
+  }
+}
+
+@media (max-width: 800px) and (max-height: 800px) {
+  #hero article p {
+    margin-bottom: 30px;
+  }
+}
+
+/* 
+---------------------------------------------
+06. Gallery Section
+--------------------------------------------- 
+*/
 .page-section#gallery {
   background-image: url(./assets/images/backgrounds/2.png);
   background-color: var(--secondaryBackgroundColor);
@@ -366,24 +527,12 @@ button:-moz-focusring,
 }
 
 #gallery article {
-  /* flex: 1; */
   display: none;
   position: fixed;
   top: 0;
   left: 0;
   right: 0;
   bottom: 0;
-  /* display: flex; */
-  /* -webkit-box-orient: vertical;
-  -webkit-box-direction: normal;
-  -ms-flex-direction: column;
-  flex-direction: column; */
-  /* -webkit-box-pack: center;
-  -ms-flex-pack: center;
-  justify-content: center;
-  -webkit-box-align: center;
-  -ms-flex-align: center;
-  align-items: center; */
   overflow: auto;
 }
 
@@ -391,9 +540,18 @@ button:-moz-focusring,
   max-width: 90%;
   min-height: 100%;
   margin: auto;
+  display: -webkit-box;
+  display: -ms-flexbox;
   display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+  -ms-flex-direction: column;
   flex-direction: column;
+  -webkit-box-pack: center;
+  -ms-flex-pack: center;
   justify-content: center;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
   align-items: center;
 }
 #gallery article button {
@@ -422,7 +580,6 @@ button:-moz-focusring,
 
 #gallery article div > img {
   max-width: 90%;
-  /* max-height: 68%; */
 }
 #gallery article div > p {
   max-width: 90%;
@@ -446,7 +603,6 @@ button:-moz-focusring,
 
 #gallery .row .col {
   width: 31.5%;
-  /* background-color: blue; */
   padding: 48px 0 0 0;
   display: -webkit-box;
   display: -ms-flexbox;
@@ -461,7 +617,6 @@ button:-moz-focusring,
 
 #gallery .row .col .img-container {
   width: 80%;
-  /* min-height: 88.5%; */
   aspect-ratio: 365/404;
   display: -webkit-box;
   display: -ms-flexbox;
@@ -475,7 +630,6 @@ button:-moz-focusring,
   -webkit-box-pack: justify;
   -ms-flex-pack: justify;
   justify-content: space-between;
-  /* background-color: red; */
   cursor: pointer;
 }
 
@@ -507,8 +661,84 @@ button:-moz-focusring,
   line-height: 66px;
 }
 
-/* Jobs Section */
+/*---- responsiveness ----*/
+@media (max-width: 1200px) {
+  #gallery article button {
+    top: 30px;
+    right: 30px;
+  }
+}
 
+@media (max-width: 1025px) {
+  .page-section#gallery {
+    padding: 30px 0;
+  }
+
+  #gallery article {
+    padding-top: 3vh;
+    padding-bottom: 3vh;
+  }
+
+  #gallery article button img {
+    width: 20px;
+    height: 20px;
+  }
+
+  #gallery .row {
+    -webkit-box-pack: justify;
+    -ms-flex-pack: justify;
+    justify-content: space-between;
+  }
+
+  #gallery .row .col {
+    width: 46%;
+    padding: 15px 0 0 0;
+  }
+
+  #gallery .row .col .img-container {
+    width: 100%;
+    aspect-ratio: 175/195;
+  }
+
+  #gallery .row .col:nth-of-type(odd) .img-container {
+    margin-right: auto;
+    margin-left: 0;
+  }
+
+  #gallery .row .col:nth-of-type(even) .img-container {
+    margin-left: auto;
+    margin-right: 0;
+  }
+
+  #gallery .row .col .img-container .gallery-img-number {
+    font-size: 20px;
+    line-height: 37px;
+  }
+}
+
+@media (max-width: 900px) {
+  #gallery article div > p {
+    font-size: 30px;
+  }
+}
+
+@media (max-width: 500px) {
+  .page-section#gallery {
+    background-size: 1365px 678px;
+    background-position: -864px 100%;
+  }
+
+  #gallery article div > p {
+    font-size: 20px;
+    line-height: 28px;
+  }
+}
+
+/* 
+---------------------------------------------
+07. Jobs Section
+--------------------------------------------- 
+*/
 .page-section#jobs {
   background-image: url(./assets/images/backgrounds/3.png);
   background-color: var(--secondaryBackgroundColor);
@@ -547,7 +777,6 @@ button:-moz-focusring,
   -webkit-box-direction: normal;
   -ms-flex-direction: column;
   flex-direction: column;
-  /* justify-content: center; */
   -webkit-box-align: center;
   -ms-flex-align: center;
   align-items: center;
@@ -563,9 +792,29 @@ button:-moz-focusring,
   text-decoration: underline;
 }
 
-/* Contact Section & Footer*/
+/*---- responsiveness ----*/
+@media (max-width: 1025px) {
+  #jobs .container h2 {
+    margin-top: 20px;
+  }
+  #jobs .container ol {
+    margin-top: 10px;
+  }
+}
+@media (max-width: 500px) {
+  .page-section#jobs {
+    background-size: 1088px 410px;
+    background-position: -281px 0;
+  }
+}
 
-.page-section#contact {
+/* 
+---------------------------------------------
+08. Contact Section & Footer
+--------------------------------------------- 
+*/
+/* Contact Section */
+page-section#contact {
   background-image: url(./assets/images/backgrounds/4.png);
   background-color: var(--primaryBackgroundColor);
   background-color: var(--primaryBackgroundColor);
@@ -632,6 +881,7 @@ button:-moz-focusring,
   color: var(--primaryTextColor);
 }
 
+/* Footer */
 footer {
   font-style: normal;
   font-weight: 400;
@@ -640,154 +890,9 @@ footer {
   margin-bottom: 10px;
 }
 
-/* Media Query */
-@media (max-width: 1536px) {
-  /* Hero Section */
-  #hero #img-container.col {
-    width: 50%;
-  }
-  #hero article.col {
-    width: 48%;
-  }
-
-  #hero article h1 {
-    font-size: 65px;
-  }
-}
-
-@media (max-width: 1200px) {
-  /* Header & Hamburger Menu */
-  #hamburger-menu {
-    position: fixed;
-    top: 30px;
-    right: 30px;
-  }
-  /* Gallery Section */
-  #gallery article button {
-    top: 30px;
-    right: 30px;
-  }
-}
-
-@media (max-width: 1025px) {
-  /* Header & Hamburger Menu */
-  #hamburger-menu button svg {
-    -webkit-transform: scale(0.51);
-    -ms-transform: scale(0.51);
-    transform: scale(0.51);
-  }
-  #hamburger-menu nav ul {
-    --paddingX: 30px;
-    --paddingY: 31px;
-  }
-  #hamburger-menu nav ul .nav-item {
-    font-size: 26px;
-    line-height: 52.49px;
-  }
-  /* Hero Section */
-  #hero .row {
-    -webkit-box-orient: vertical;
-    -webkit-box-direction: normal;
-    -ms-flex-direction: column;
-    flex-direction: column;
-  }
-
-  #hero #img-container.col,
-  #hero article.col {
-    width: 100%;
-  }
-
-  #hero #img-container img {
-    width: 100%;
-  }
-
-  #gallery article {
-    padding-top: 3vh;
-    padding-bottom: 3vh;
-  }
-
-  #hero article h1 {
-    font-size: 75px;
-    line-height: 151%;
-    text-align: center;
-    margin-top: 30px;
-  }
-
-  #hero article p {
-    margin-top: 10px;
-  }
-  /* Gallery Section */
-  .page-section#gallery {
-    padding: 30px 0;
-  }
-
-  #gallery article button img {
-    width: 20px;
-    height: 20px;
-  }
-
-  #gallery .row {
-    -webkit-box-pack: justify;
-    -ms-flex-pack: justify;
-    justify-content: space-between;
-  }
-
-  #gallery .row .col {
-    width: 46%;
-    padding: 15px 0 0 0;
-  }
-
-  #gallery .row .col .img-container {
-    width: 100%;
-    /* min-height: 111.24%; */
-    aspect-ratio: 175/195;
-  }
-
-  /* #gallery .row .col .img-container::before {
-    padding-top: 111.43%;  aspect-ratio fixer padding 
-  } */
-
-  #gallery .row .col:nth-of-type(odd) .img-container {
-    margin-right: auto;
-    margin-left: 0;
-  }
-
-  #gallery .row .col:nth-of-type(even) .img-container {
-    margin-left: auto;
-    margin-right: 0;
-  }
-
-  #gallery .row .col .img-container .gallery-img-number {
-    font-size: 20px;
-    line-height: 37px;
-    /* line-height: 100%; */
-  }
-
-  /* Jobs Section */
-  #jobs .container h2 {
-    margin-top: 20px;
-  }
-  #jobs .container ol {
-    margin-top: 10px;
-  }
-
-  /* Contact Section & Footer*/
-}
-
+/*---- responsiveness ----*/
+/* Contact Section */
 @media (max-width: 900px) {
-  /* Header & Hamburger Menu */
-  #hamburger-menu nav ul .nav-item {
-    font-size: 26px;
-    line-height: 52px;
-    line-height: 202%;
-  }
-
-  /* Gallery Section */
-  #gallery article div > p {
-    font-size: 30px;
-  }
-
-  /* Contact Section & Footer*/
   #contact .container #contacts-container ul li a {
     display: block;
     width: -webkit-fit-content;
@@ -796,78 +901,17 @@ footer {
     margin: auto;
   }
 }
-
 @media (max-width: 500px) {
-  /* General Classes */
-  .section-h1 {
-    font-size: 50px;
-    line-height: 94px;
-  }
-
-  .section-h2 {
-    font-size: 20px;
-    line-height: 37px;
-  }
-
-  .section-p {
-    font-size: 20px;
-    line-height: 30px;
-  }
-
-  /* Hero Section */
-  .page-section#hero {
-    background-size: 1264.34px 655.82px;
-    background-position: 0 0;
-  }
-  #hero article h1 {
-    font-size: 50px;
-  }
-  #hero article p {
-    font-size: 20px;
-    line-height: 30px;
-    line-height: 151%;
-  }
-
-  /* Gallery Section */
-  .page-section#gallery {
-    background-size: 1365px 678px;
-    background-position: -864px 100%;
-  }
-
-  #gallery article div > p {
-    font-size: 20px;
-    line-height: 28px;
-    /* line-height: 75%; */
-  }
-
-  /* Jobs Section */
-  .page-section#jobs {
-    background-size: 1088px 410px;
-    background-position: -281px 0;
-  }
-
-  /* Contact Section & Footer*/
   .page-section#contact {
     background-size: 1172px 593px;
     background-position: -640px 100%;
   }
+}
+
+/* Footer */
+@media (max-width: 500px) {
   footer {
     font-size: 14px;
     line-height: 131.4%;
-  }
-}
-
-@media (max-width: 450px) {
-}
-
-@media (max-width: 1024px) and (max-height: 1080px) {
-  #hero .container {
-    padding-top: 100px;
-  }
-}
-
-@media (max-width: 800px) and (max-height: 800px) {
-  #hero article p {
-    margin-bottom: 30px;
   }
 }
