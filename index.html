@@ -4,20 +4,25 @@
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <!-- <link rel="stylesheet" href="./assets/css/normalize.css" /> -->
-    <link rel="stylesheet" href="./style2.css" />
+
     <title>Ofaly</title>
     <meta name="description" content="Home page of Ofaly company website." />
+
+    <!-- used fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
       href="https://fonts.googleapis.com/css2?family=Cairo:wght@400&family=Days+One&display=swap"
       rel="stylesheet"
     />
+
+    <!-- custom styles files -->
+    <link rel="stylesheet" href="./style2.css" />
   </head>
+
   <body>
+    <!-- hamburger-menu -->
     <header id="hamburger-menu" class="z-index-2">
-      <!-- TODO if an image clicked make that button a cross -->
       <button aria-label="button to toggle the menu" type="button">
         <svg
           width="47"
@@ -61,7 +66,9 @@
         </ul>
       </nav>
     </header>
+
     <main>
+      <!-- section1 : Hero -->
       <section id="hero" class="page-section">
         <div class="container">
           <div class="row">
@@ -88,9 +95,10 @@
           </div>
         </div>
       </section>
+
+      <!-- section1 : Gallery -->
       <section id="gallery" class="page-section">
         <div class="container">
-          <!--  TODO next article is hidden until you choose an image -->
           <article id="clicked-image-container" class="z-index-3">
             <div>
               <img src="" alt="gallery-image" />
@@ -104,9 +112,10 @@
             </button>
           </article>
           <div id="images-row" class="row"></div>
-          <!-- TODO generated using js and numbers are generated automatically -->
         </div>
       </section>
+
+      <!-- section1 : Jobs -->
       <section id="jobs" class="page-section">
         <div class="container">
           <h1 class="section-h1">Jobs</h1>
@@ -126,6 +135,8 @@
           </ol>
         </div>
       </section>
+
+      <!-- section1 : Contact -->
       <section id="contact" class="page-section">
         <div class="container">
           <div id="contacts-container">
@@ -152,7 +163,10 @@
         </div>
       </section>
     </main>
+    <!-- the common used overlay -->
     <div id="overlay" class="z-index-1"></div>
+
+    <!-- scripts -->
     <script src="./app.js" type="module"></script>
   </body>
 </html>

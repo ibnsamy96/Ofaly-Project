@@ -27,7 +27,6 @@ Max-Width Checkpoint 5 => 500px
 :root {
   --primaryBrandColor: #b22519;
   --primaryTextColor: #000000;
-  /* TODO use the next color for hero links, contacts, jobs */
   --interactiveTextColor: #437cb7;
   --primaryBackgroundColor: rgb(249, 249, 249);
   --secondaryBackgroundColor: rgb(255, 255, 255);
