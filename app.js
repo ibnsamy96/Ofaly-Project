@@ -79,8 +79,8 @@ const toggleOverlay = ({ isMenu }) => {
       // if overlay is clicked and the menu is open, toggle the menu to close it before removing the overlay
       toggleMenu();
     } else {
-      // if overlay is clicked and an image container is open, remove the blurry-effect class before removing the overlay
-      overlay.classList.remove("blurry-effect");
+      // if overlay is clicked and an image container is open, remove the effect class before removing the overlay
+      overlay.className = "";
     }
     overlay.removeAttribute("data-state");
     togglePageScroll("show-scroll");
@@ -91,7 +91,20 @@ const toggleOverlay = ({ isMenu }) => {
       overlay.setAttribute("data-state", "menu-opened");
     } else {
       overlay.setAttribute("data-state", "img-shown");
-      overlay.classList.add("blurry-effect");
+
+      const isBrowserSupportBlur = CSS.supports("backdrop-filter: blur(15px)");
+
+      const overlayBGClass = isBrowserSupportBlur
+        ? "blurry-effect"
+        : "solid-effect";
+      overlay.classList.add(overlayBGClass);
+
+      // if no backdrop-filter: blur() support, then update the background of the overlay to be white
+      // if (!CSS.supports("backdrop-filter: blur(15px)")) {
+      //   console.log("no backdrop");
+      //   // overlay.style.opacity = 1;
+      //   overlay.style.backgroundColor = "";
+      // }
     }
     togglePageScroll("hide-scroll");
     newOverlayState = "block";
@@ -246,11 +259,4 @@ if (!CSS.supports("aspect-ratio: 1")) {
       });
     }
   });
-}
-
-// if no backdrop-filter: blur() support, then update the background of the overlay to be white
-if (!CSS.supports("backdrop-filter: blur(15px)")) {
-  console.log("no backdrop");
-  overlay.style.opacity = 1;
-  overlay.style.backgroundColor = "rgb(255, 255, 255)";
 }

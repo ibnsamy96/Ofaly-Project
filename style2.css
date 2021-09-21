@@ -226,6 +226,9 @@ button:-moz-focusring,
   backdrop-filter: blur(15px) !important;
 }
 
+.solid-effect {
+  background-color: rgb(255, 255, 255);
+}
 /* 
 ---------------------------------------------
 05. Hamburger Menu & Hero Section
