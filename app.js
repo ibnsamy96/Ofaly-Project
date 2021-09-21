@@ -1,4 +1,4 @@
-import { galleryImages } from "./gallery-images.js";
+import { launcherImages } from "./launcher-images.js";
 
 const imgsContainersObjects = [];
 let lastWidth;
@@ -40,21 +40,21 @@ function getElementHeightByCalculatingAspectRatio({
   return elementHeight;
 }
 
-function addImagesToGallery(imageObject) {
-  const galleryRow = document.querySelector("#gallery .container .row");
+function addImagesToLauncher(imageObject) {
+  const launcherRow = document.querySelector("#launcher .container .row");
 
-  const galleryCol = document.createElement("div");
+  const launcherCol = document.createElement("div");
   const imgContainer = document.createElement("a");
-  const galleryImg = document.createElement("div");
+  const launcherImg = document.createElement("div");
 
-  galleryCol.setAttribute("class", "col");
+  launcherCol.setAttribute("class", "col");
   imgContainer.setAttribute("class", "img-container");
   imgContainer.setAttribute("href", imageObject.hrefValue);
   imgContainer.setAttribute("data-number", imageObject.number);
 
-  galleryImg.setAttribute("class", "gallery-img");
-  galleryImg.style.backgroundImage = `url('${imageObject.imgLink}')`;
-  galleryImg.addEventListener("click", (e) => {
+  launcherImg.setAttribute("class", "launcher-img");
+  launcherImg.style.backgroundImage = `url('${imageObject.imgLink}')`;
+  launcherImg.addEventListener("click", (e) => {
     // console.log(this);
     // console.log("e.target ->");
     e.preventDefault();
@@ -72,12 +72,12 @@ function addImagesToGallery(imageObject) {
     }, 200);
   });
 
-  galleryCol.appendChild(imgContainer);
-  imgContainer.appendChild(galleryImg);
+  launcherCol.appendChild(imgContainer);
+  imgContainer.appendChild(launcherImg);
 
-  galleryRow.appendChild(galleryCol);
+  launcherRow.appendChild(launcherCol);
 
-  // specifying gallery images aspect-ratio
+  // specifying launcher images aspect-ratio
   if (!CSS.supports("aspect-ratio: 1")) {
     console.log("no aspect-ratio support");
     const elementObject = {
@@ -92,15 +92,16 @@ function addImagesToGallery(imageObject) {
   }
 }
 
-galleryImages.forEach((image, index) => {
+launcherImages.forEach((image, index) => {
   console.log(index);
   const imageObject = { number: index + 1, ...image };
-  addImagesToGallery(imageObject);
+  addImagesToLauncher(imageObject);
 });
 
-if (galleryImages.length % 3 !== 0) {
+if (launcherImages.length % 3 !== 0) {
+  console.log(launcherImages);
   const imagesTempVar = [
-    ...document.querySelectorAll("#gallery .row .col:nth-of-type(3n-2)"),
+    ...document.querySelectorAll("#launcher .row .col:nth-of-type(3n-2)"),
   ];
 
   const lastImageContainer =

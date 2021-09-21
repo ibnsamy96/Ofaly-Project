@@ -1,4 +1,4 @@
-export const galleryImages = [
+export const launcherImages = [
   {
     imgLink: "./assets/images/1.png",
     hrefValue: "./assets/images/1.png",
@@ -18,6 +18,18 @@ export const galleryImages = [
   {
     imgLink: "./assets/images/5.png",
     hrefValue: "./assets/images/5.png",
+  },
+  {
+    imgLink: "./assets/images/6.png",
+    hrefValue: "./assets/images/6.png",
+  },
+  {
+    imgLink: "./assets/images/6.png",
+    hrefValue: "./assets/images/6.png",
+  },
+  {
+    imgLink: "./assets/images/6.png",
+    hrefValue: "./assets/images/6.png",
   },
   {
     imgLink: "./assets/images/6.png",
