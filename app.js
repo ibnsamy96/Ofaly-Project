@@ -80,7 +80,7 @@ const toggleOverlay = ({ isMenu }) => {
       toggleMenu();
     } else {
       // if overlay is clicked and an image container is open, remove the effect class before removing the overlay
-      overlay.className = "";
+      overlay.className = "z-index-1";
     }
     overlay.removeAttribute("data-state");
     togglePageScroll("show-scroll");
