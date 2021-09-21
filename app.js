@@ -1,6 +1,6 @@
 import { launcherImages } from "./launcher-images.js";
 
-// console.log = () => {}; // to hide all logs
+console.log = () => {}; // to hide all logs
 
 // Holds the document width => helpful to be checked to maintain responsiveness
 let lastWidth;
@@ -60,7 +60,7 @@ function addImagesToLauncher(imageObject) {
     lastClickedImage = e.target;
     lastClickedImage.style.borderColor = "black";
     setTimeout(() => {
-      // window.location.href = imageObject.hrefValue;
+      window.location.href = imageObject.hrefValue;
     }, 200);
   });
 
