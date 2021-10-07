@@ -1,4 +1,4 @@
-export const launcherImages = [
+const launcherImages = [
   {
     imgLink: "./assets/images/1.png",
     hrefValue: "./assets/images/1.png",
