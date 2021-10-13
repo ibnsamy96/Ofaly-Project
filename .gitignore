@@ -4,3 +4,6 @@
 
 # Config Files/Folders
 .vscode
+
+# Videos
+*.mp4
