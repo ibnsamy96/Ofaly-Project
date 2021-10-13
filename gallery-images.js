@@ -1,4 +1,4 @@
-export const galleryImages = [
+const galleryImages = [
   {
     thumbnailLink: "./assets/images/gallery/thumbnails/1.JPG",
     imgLink: "./assets/images/gallery/1.JPG",
