@@ -1,3 +1,5 @@
+// import { galleryImages } from "./gallery-images.js";
+
 console.log = () => {}; // to hide all logs
 
 // Holds the document width => helpful to be checked to maintain responsiveness
@@ -151,7 +153,7 @@ function addImageToGallery(imageObject) {
   const galleryCol = document.createElement("div");
   const imgContainer = document.createElement("div");
   const galleryImg = document.createElement("div");
-  const galleryImgNumber = document.createElement("p");
+  const galleryThumbnailText = document.createElement("p");
 
   galleryCol.setAttribute("class", "col");
   imgContainer.setAttribute("class", "img-container");
@@ -176,14 +178,14 @@ function addImageToGallery(imageObject) {
   });
 
   galleryImg.setAttribute("class", "gallery-img");
-  galleryImgNumber.setAttribute("class", "gallery-img-number");
+  galleryThumbnailText.setAttribute("class", "gallery-thumbnail-text");
 
   galleryImg.style.backgroundImage = `url('${imageObject.thumbnailLink}')`;
-  galleryImgNumber.innerText = imageObject.index + 1;
+  galleryThumbnailText.innerText = imageObject.thumbnailText;
 
   galleryCol.appendChild(imgContainer);
   imgContainer.appendChild(galleryImg);
-  imgContainer.appendChild(galleryImgNumber);
+  imgContainer.appendChild(galleryThumbnailText);
 
   galleryRow.appendChild(galleryCol);
 

@@ -669,7 +669,7 @@ button:-moz-focusring,
   background-position: center;
 }
 
-#gallery .row .col .img-container .gallery-img-number {
+#gallery .row .col .img-container .gallery-thumbnail-text {
   font-style: normal;
   font-weight: 400;
   font-size: 35px;
@@ -681,6 +681,11 @@ button:-moz-focusring,
   #gallery article button {
     top: 30px;
     right: 30px;
+  }
+
+  #gallery .row .col .img-container .gallery-thumbnail-text {
+    font-size: 30px;
+    /* line-height: 37px; */
   }
 }
 
@@ -729,7 +734,7 @@ button:-moz-focusring,
     margin-right: 0;
   }
 
-  #gallery .row .col .img-container .gallery-img-number {
+  #gallery .row .col .img-container .gallery-thumbnail-text {
     font-size: 20px;
     line-height: 37px;
   }
