@@ -1,0 +1,15 @@
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="20.757" height="15.511" viewBox="0 0 20.757 15.511">
+  <defs>
+    <clipPath id="clip-path">
+      <path id="wifi_mask" data-name="wifi mask" d="M0,0,10.378,15.511,20.757,0Z" transform="translate(301.521 7.755)"/>
+    </clipPath>
+  </defs>
+  <g id="wifi" transform="translate(-301.521 -7.755)">
+    <g id="wifi_mask-2" data-name="wifi mask" clip-path="url(#clip-path)">
+      <path id="Shape" d="M311.9,38.777a15.585,15.585,0,1,1,10.994-4.557A15.485,15.485,0,0,1,311.9,38.777Zm0-27.144a11.633,11.633,0,1,0,11.676,11.633A11.668,11.668,0,0,0,311.9,11.633Z" fill="rgba(255,255,255,0.3)"/>
+      <path id="Shape-2" data-name="Shape" d="M311.9,34.9a11.606,11.606,0,1,1,8.27-3.393A11.631,11.631,0,0,1,311.9,34.9Zm0-19.389a7.755,7.755,0,1,0,7.784,7.755A7.779,7.779,0,0,0,311.9,15.512Z" fill="rgba(255,255,255,0.9)"/>
+      <path id="Shape-3" data-name="Shape" d="M311.9,31.022a7.755,7.755,0,1,1,7.784-7.755A7.779,7.779,0,0,1,311.9,31.022Zm0-11.633a3.878,3.878,0,1,0,3.892,3.878A3.8,3.8,0,0,0,311.9,19.389Z" fill="rgba(255,255,255,0.9)"/>
+      <path id="Oval" d="M3.892,7.756A3.878,3.878,0,1,0,0,3.878,3.885,3.885,0,0,0,3.892,7.756Z" transform="translate(308.008 19.389)" fill="rgba(255,255,255,0.9)"/>
+    </g>
+  </g>
+</svg>
