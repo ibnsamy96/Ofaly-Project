@@ -12,14 +12,169 @@
   </head>
 
   <body class="background">
-    <section id="launcher" class="page-section">
+    <!-- <section id="launcher" class="page-section">
       <div class="container">
         <div id="images-row" class="row"></div>
       </div>
-    </section>
+    </section> -->
+
+    <main
+      style="
+        background-image: url('./design-assets/PNG/Phone.png');
+        width: 480px;
+        height: 980px;
+        background-size: auto 100%;
+        background-repeat: no-repeat;
+        background-color: transparent;
+        padding: 22px;
+      "
+    >
+      <div
+        style="
+          background-color: white;
+          width: 100%;
+          height: 100%;
+          border-radius: 40px;
+          overflow: hidden;
+        "
+      >
+        <div
+          style="
+            height: 30px;
+            background-color: #8c1e15;
+            display: flex;
+            flex-direction: row-reverse;
+            align-items: center;
+            color: white;
+            padding-right: 22px;
+          "
+        >
+          <span
+            id="clock"
+            style="padding-left: 8px; font-family: Roboto; font-size: 16px"
+            ><span id="hours">12</span>:<span id="minutes">30</span></span
+          >
+          <img style="padding-left: 8px" src="./assets/icons/battery.svg" />
+          <img style="padding-left: 2px" src="./assets/icons/reception.svg" />
+          <img src="./assets/icons/wifi.svg" />
+        </div>
+        <div
+          style="
+            height: 38px;
+            background-color: #b22519;
+            display: flex;
+            flex-direction: row-reverse;
+            align-items: center;
+            justify-content: center;
+          "
+        >
+          <img src="./assets/logos/Ofaly.svg" alt="Ofaly company logo." />
+        </div>
+        <section
+          style="
+            display: flex;
+            flex-direction: row;
+            flex-wrap: wrap;
+            justify-content: center;
+            text-align: center;
+          "
+        >
+          <a
+            style="
+              display: flex;
+              align-items: center;
+              justify-content: center;
+              width: calc(100% / 3);
+              padding: 25px;
+              border-bottom: 1px solid #cfd3d6;
+            "
+            href="#"
+            ><img src="./assets/logos/superapp.svg" style="width: 80%"
+          /></a>
+          <a
+            style="
+              display: flex;
+              align-items: center;
+              justify-content: center;
+              width: calc(100% / 3);
+              border: 1px solid #cfd3d6;
+              border-top: none;
+              padding: 25px;
+            "
+            href="#"
+            ><img src="./assets/logos/club.svg" style="width: 45%"
+          /></a>
+          <a
+            style="
+              display: flex;
+              align-items: center;
+              justify-content: center;
+              width: calc(100% / 3);
+              border-bottom: 1px solid #cfd3d6;
+              box-shadow: 0px 0px 5px 0px rgba(111, 111, 111, 0.5);
+
+              padding: 25px;
+            "
+            href="#"
+            ><img src="./assets/logos/digital.svg" style="width: 60%"
+          /></a>
+          <a
+            style="
+              display: flex;
+              align-items: center;
+              justify-content: center;
+              width: calc(100% / 3);
+              border-bottom: 1px solid #cfd3d6;
+              padding: 25px;
+            "
+            href="#"
+            ><img src="./assets/logos/express.svg" style="width: 60%"
+          /></a>
+          <a
+            style="
+              display: flex;
+              align-items: center;
+              justify-content: center;
+              width: calc(100% / 3);
+              border: 1px solid #cfd3d6;
+              border-top: none;
+              padding: 25px;
+            "
+            href="#"
+            ><img src="./assets/logos/systems.svg" style="width: 65%"
+          /></a>
+          <a
+            style="
+              display: flex;
+              align-items: center;
+              justify-content: center;
+              width: calc(100% / 3);
+              border-bottom: 1px solid #cfd3d6;
+              padding: 25px;
+            "
+            href="#"
+            ><img src="./assets/logos/mafia.svg" style="width: 60%"
+          /></a>
+        </section>
+      </div>
+    </main>
 
     <!-- scripts -->
     <script src="./launcher-icons.js"></script>
-    <script src="./app.js"></script>
+    <!-- <script src="./app.js"></script> -->
+    <script id="tempScript">
+      const clockHoursSpan = document.querySelector("#clock #hours");
+      const clockMinutesSpan = document.querySelector("#clock #minutes");
+      console.log("wow");
+      setInterval(() => {
+        console.log("1 second passed");
+        const time = new Date();
+        const hours = time.getHours() > 0 ? time.getHours() : "00";
+        const minutes = time.getMinutes();
+        console.log(hours + " - " + minutes);
+        clockHoursSpan.innerText = hours;
+        clockMinutesSpan.innerText = minutes;
+      }, 1000);
+    </script>
   </body>
 </html>
