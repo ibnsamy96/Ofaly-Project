@@ -1,26 +1,26 @@
-const launcherImages = [
+const launcherIcons = [
   {
     imgLink: "./assets/logos/superapp.svg",
-    hrefValue: "./assets/images/1.png",
+    hrefValue: "https://ofaly.com/superapp",
   },
   {
     imgLink: "./assets/logos/club.svg",
-    hrefValue: "./assets/images/2.png",
+    hrefValue: "https://ofaly.com/club",
   },
   {
     imgLink: "./assets/logos/digital.svg",
-    hrefValue: "./assets/images/3.png",
+    hrefValue: "https://ofaly.com/digital",
   },
   {
     imgLink: "./assets/logos/express.svg",
-    hrefValue: "./assets/images/4.png",
+    hrefValue: "https://ofaly.com/express",
   },
   {
     imgLink: "./assets/logos/systems.svg",
-    hrefValue: "./assets/images/5.png",
+    hrefValue: "https://ofaly.com/systems",
   },
   {
     imgLink: "./assets/logos/mafia.svg",
-    hrefValue: "./assets/images/6.png",
+    hrefValue: "https://ofaly.com/mafia",
   },
 ];
