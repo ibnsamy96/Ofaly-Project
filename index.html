@@ -4,10 +4,11 @@
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="description" content="Ofaly holding company." />
 
     <!-- changing top bar bg-color for in mobiles -->
-    <meta name="theme-color" content="#b22519" />
-    <meta name="msapplication-navbutton-color" content="#b22519" />
+    <meta name="theme-color" content="#8c1e15" />
+    <meta name="msapplication-navbutton-color" content="#8c1e15" />
     <meta name="apple-mobile-web-app-capable" content="yes" />
     <meta
       name="apple-mobile-web-app-status-bar-style"
@@ -21,49 +22,29 @@
 
     <style>
       /* TODO Handle the scrollbar */
-      /* width of vertical & height of horizontal scrollbars */
-      ::-webkit-scrollbar {
-        width: 10px;
-        height: 10px;
-      }
-
-      /* Track */
-      ::-webkit-scrollbar-track {
-        background: #f1f1f1;
-      }
-
-      /* Handle */
-      ::-webkit-scrollbar-thumb {
-        background: rgba(178, 37, 25, 0.5);
-      }
-
-      /* Handle on hover */
-      ::-webkit-scrollbar-thumb:hover {
-        background: rgb(140, 30, 21, 0.7);
-      }
     </style>
   </head>
 
   <body>
     <main id="launcher-outer-container">
       <div id="launcher-inner-container">
-        <div id="notification-bar">
+        <div id="notification-bar" aria-hidden="true">
           <span id="clock">00:00</span>
-          <img id="battery" src="./assets/icons/battery.svg" />
+          <img id="battery" src="./assets/icons/battery.svg" width="" />
           <img id="reception" src="./assets/icons/reception.svg" />
           <img id="wifi" src="./assets/icons/wifi.svg" />
         </div>
         <div id="logo-bar">
           <img src="./assets/logos/Ofaly.svg" alt="Ofaly company logo." />
         </div>
-        <section>
+        <nav role="navigation" aria-label="Main">
           <!-- <a id="superapp-logo"><img src="./assets/logos/superapp.svg" /></a>
           <a id="club-logo"><img src="./assets/logos/club.svg" /></a>
           <a id="digital-logo"><img src="./assets/logos/digital.svg" /></a>
           <a id="express-logo"><img src="./assets/logos/express.svg" /></a>
           <a id="systems-logo"><img src="./assets/logos/systems.svg" /></a>
           <a id="mafia-logo"><img src="./assets/logos/mafia.svg" /></a> -->
-        </section>
+        </nav>
       </div>
     </main>
 

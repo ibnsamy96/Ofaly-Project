@@ -4,7 +4,7 @@ Table of contents
 01. reset css
 02. launcher
 ---------------------------------------------
-Each section has its default styles and
+Each Section has its default styles and
 responsiveness ones.
 Max-Width Checkpoint 1 => 1536px 
 Max-Width Checkpoint 2 => 1200px
@@ -106,7 +106,7 @@ body {
   justify-content: center;
 }
 
-#launcher-inner-container > section {
+#launcher-inner-container > nav {
   display: flex;
   flex-direction: row;
   flex-wrap: wrap;
@@ -114,7 +114,7 @@ body {
   text-align: center;
 }
 
-#launcher-inner-container > section > a {
+#launcher-inner-container > nav > a {
   --default-border: 1px solid #cfd3d6;
 
   display: flex;
@@ -128,35 +128,56 @@ body {
   cursor: pointer;
 }
 
-#launcher-inner-container > section > a:nth-of-type(3n-1) {
+#launcher-inner-container > nav > a:nth-of-type(3n-1) {
   border: 1px solid #cfd3d6;
   border-top: none;
 }
 
-#launcher-inner-container > section > a:hover {
+#launcher-inner-container > nav > a:hover {
   box-shadow: 0px 0px 5px 0px rgba(111, 111, 111, 0.3);
 }
 
-#launcher-inner-container > section > a.selected {
+#launcher-inner-container > nav > a.selected {
   box-shadow: 0px 0px 10px 0px rgba(111, 111, 111, 0.3);
 }
 
-#launcher-inner-container > section > a img {
+#launcher-inner-container > nav > a img {
   width: 60%;
 }
 
 /* TODO it uses IDs! what if he added new logo to the launcher?! */
-#launcher-inner-container > section > a#superapp-logo img {
+#launcher-inner-container > nav > a#superapp-logo img {
   width: 80%;
 }
-#launcher-inner-container > section > a#club-logo img {
+#launcher-inner-container > nav > a#club-logo img {
   width: 45%;
 }
-#launcher-inner-container > section > a#systems-logo img {
+#launcher-inner-container > nav > a#systems-logo img {
   width: 65%;
 }
 
 @media (max-width: 500px) {
+  /* width of vertical & height of horizontal scroll-bars */
+  ::-webkit-scrollbar {
+    width: 10px;
+    height: 10px;
+  }
+
+  /* Track */
+  ::-webkit-scrollbar-track {
+    background: #f1f1f1;
+  }
+
+  /* Handle */
+  ::-webkit-scrollbar-thumb {
+    background: rgba(178, 37, 25, 0.5);
+  }
+
+  /* Handle on hover */
+  ::-webkit-scrollbar-thumb:hover {
+    background: rgb(140, 30, 21, 0.7);
+  }
+
   body {
     display: initial;
   }

@@ -46,7 +46,7 @@ and and adds it to the gallery section in the page
 */
 function addIconsToLauncher(iconObject) {
   const iconsSection = document.querySelector(
-    "#launcher-inner-container > section"
+    "#launcher-inner-container > nav"
   );
 
   const iconContainerAnchor = document.createElement("a");
@@ -58,6 +58,7 @@ function addIconsToLauncher(iconObject) {
   iconContainerAnchor.setAttribute("id", iconID);
 
   iconImg.setAttribute("src", iconObject.iconLink);
+  iconImg.setAttribute("alt", `${iconID.toUpperCase()} service.`);
 
   iconContainerAnchor.addEventListener("click", (e) => {
     e.preventDefault();
