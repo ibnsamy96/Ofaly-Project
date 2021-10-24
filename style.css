@@ -56,6 +56,26 @@ body {
   justify-content: center;
 }
 
+#loading-layer {
+  position: fixed;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  background-color: #b22519;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: bottom 1.5s;
+}
+
+#loading-layer > img {
+  max-width: 60%;
+  width: 150px;
+  opacity: 1;
+  transition: opacity 1s;
+}
+
 #launcher-outer-container {
   background-image: url("./assets/Phone.png");
   background-size: 100% 100%;

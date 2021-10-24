@@ -127,6 +127,12 @@ if (!CSS.supports("aspect-ratio: 1") && getDocumentWidth() > 500) {
 window.addEventListener("load", () => {
   console.log("loaded");
 
-  const x = document.querySelector("#layer");
-  x.style.display = "none";
+  const loadingLayer = document.querySelector("#loading-layer");
+
+  loadingLayer.querySelector("img").style.opacity = 0;
+  loadingLayer.style.bottom = "100%";
+
+  setTimeout(() => {
+    loadingLayer.style.display = "none";
+  }, 2000);
 });
