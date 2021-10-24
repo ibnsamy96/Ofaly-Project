@@ -61,7 +61,7 @@ function addIconsToLauncher(iconObject) {
 
     setTimeout(() => {
       // TODO uncomment the next line
-      // window.location.href = iconObject.hrefValue;
+      window.location.href = iconObject.hrefValue;
     }, 200);
   });
 
@@ -79,23 +79,23 @@ launcherIcons.forEach((icon, index) => {
 // ------------------------ Handling Aspect Ratio ------------------------ //
 
 // returns the current document width
-function getDocumentWidth() {
+function getDocumentHeight() {
   return (
-    window.innerWidth ||
-    document.documentElement.clientWidth ||
-    document.body.clientWidth
+    window.innerHeight ||
+    document.documentElement.clientHeight ||
+    document.body.clientHeight
   );
 }
 
 // Holds the document width => helpful to be checked to maintain responsiveness
-let lastWidth;
-console.log(lastWidth);
+let lastHeight;
+console.log(lastHeight);
 /*
  returns element height based on its width and its specified aspect-ratio
  => helpful to replace aspect-ratio css property as it doesn't work on Safari
 */
 function getElementWidthByCalculatingAspectRatio({ element, mainRatio }) {
-  lastWidth = getDocumentWidth();
+  lastHeight = getDocumentHeight();
   // elementWidth;
   const elementHeight = parseFloat(
     window.getComputedStyle(element).getPropertyValue("height")
@@ -112,17 +112,25 @@ const phoneMainElement = document.querySelector("main");
 
 // if no aspect-ratio support, then add event listener to window to update mobile height using getElementWidthByCalculatingAspectRatio()
 const setElementWidthBasedOnAspectRatio = () => {
-  if (lastWidth !== getDocumentWidth()) {
-    phoneMainElement.style.width = `${getElementWidthByCalculatingAspectRatio({
+  if (lastHeight !== getDocumentHeight()) {
+    const newWidth = `${getElementWidthByCalculatingAspectRatio({
       element: phoneMainElement,
       mainRatio: 480 / 980,
-    })}px`;
+    })}`;
+
+    console.log(newWidth);
+
+    // phoneMainElement.style.width = newWidth + 'px';
+    phoneMainElement.style.setProperty("--new-width", newWidth + "px");
+    console.log(phoneMainElement.style.getPropertyValue("--new-width"));
   }
 };
-if (!CSS.supports("aspect-ratio: 1") && getDocumentWidth() > 500) {
-  setElementWidthBasedOnAspectRatio();
-  window.addEventListener("resize", setElementWidthBasedOnAspectRatio);
-}
+// if (getDocumentHeight() > 500) {
+setElementWidthBasedOnAspectRatio();
+window.addEventListener("resize", setElementWidthBasedOnAspectRatio);
+// }
+
+// ------------------------ Removing Loader ------------------------ //
 
 window.addEventListener("load", () => {
   console.log("loaded");

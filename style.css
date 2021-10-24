@@ -38,6 +38,27 @@ body {
   min-height: 100%;
 }
 
+/* width of vertical & height of horizontal scroll-bars */
+::-webkit-scrollbar {
+  width: 10px;
+  height: 10px;
+}
+
+/* Track */
+::-webkit-scrollbar-track {
+  background: #f1f1f1;
+}
+
+/* Handle */
+::-webkit-scrollbar-thumb {
+  background: rgba(178, 37, 25, 0.5);
+}
+
+/* Handle on hover */
+::-webkit-scrollbar-thumb:hover {
+  background: rgb(140, 30, 21, 0.7);
+}
+
 /* 
 ---------------------------------------------
 02. Launcher
@@ -77,35 +98,47 @@ body {
 }
 
 #launcher-outer-container {
+  --default-width: 480;
+  --default-height: 980;
+  --default-padding: 22;
+
+  --new-width: auto;
+
   background-image: url("./assets/Phone.png");
   background-size: 100% 100%;
   background-repeat: no-repeat;
   background-color: transparent;
 
-  width: auto;
+  width: var(--new-width);
   height: 95vh;
 
-  aspect-ratio: 480/980;
+  aspect-ratio: var(--default-width) / var(--default-height);
   margin: auto;
-  padding: 22px;
+  padding: calc(var(--new-width) * 22 / 480);
 }
 
 #launcher-inner-container {
+  --default-border-radius: 40;
+
   background-color: white;
   width: 100%;
   height: 100%;
-  border-radius: 40px;
+  border-radius: calc(var(--new-width) * 40 / 480);
+
   overflow: hidden;
+
+  display: flex;
+  flex-direction: column;
 }
 
 #launcher-inner-container #notification-bar {
-  height: 30px;
+  min-height: 30px;
   background-color: #8c1e15;
   display: flex;
   flex-direction: row-reverse;
   align-items: center;
   color: white;
-  padding-right: 22px;
+  padding-right: calc(var(--new-width) * 22 / 480);
 }
 
 #launcher-inner-container #notification-bar #clock,
@@ -118,7 +151,7 @@ body {
 }
 
 #launcher-inner-container #logo-bar {
-  height: 38px;
+  min-height: 38px;
   background-color: #b22519;
   display: flex;
   flex-direction: row-reverse;
@@ -131,18 +164,23 @@ body {
   flex-direction: row;
   flex-wrap: wrap;
   justify-content: center;
+
   text-align: center;
+  overflow-y: auto;
+  padding-bottom: 5px;
 }
 
 #launcher-inner-container > nav > a {
   --default-border: 1px solid #cfd3d6;
+  --default-a-padding: 25;
 
   display: flex;
   align-items: center;
   justify-content: center;
 
   width: calc(100% / 3);
-  padding: 25px;
+  /* width: 100%; */
+  padding: calc(var(--new-width) * 25 / 480);
 
   border-bottom: var(--default-border);
   cursor: pointer;
@@ -177,27 +215,6 @@ body {
 }
 
 @media (max-width: 500px) {
-  /* width of vertical & height of horizontal scroll-bars */
-  ::-webkit-scrollbar {
-    width: 10px;
-    height: 10px;
-  }
-
-  /* Track */
-  ::-webkit-scrollbar-track {
-    background: #f1f1f1;
-  }
-
-  /* Handle */
-  ::-webkit-scrollbar-thumb {
-    background: rgba(178, 37, 25, 0.5);
-  }
-
-  /* Handle on hover */
-  ::-webkit-scrollbar-thumb:hover {
-    background: rgb(140, 30, 21, 0.7);
-  }
-
   body {
     display: initial;
   }
