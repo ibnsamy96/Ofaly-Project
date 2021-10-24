@@ -32,8 +32,10 @@ const updateTime = () => {
 };
 
 // update time right after the document is loaded and every second
-updateTime();
-setInterval(updateTime, 1000);
+const updatingClockInterval = setInterval(updateTime, 1000);
+
+if (clockSpan) updateTime();
+else clearInterval(updatingClockInterval);
 
 // ------------------------ Adding Icons ------------------------ //
 
@@ -87,8 +89,8 @@ launcherIcons.forEach((icon, index) => {
 // ------------------------ Handling Aspect Ratio ------------------------ //
 
 // Holds the document width => helpful to be checked to maintain responsiveness
-let lastWidth;
-
+let lastWidth = getDocumentWidth();
+console.log(lastWidth);
 /*
  returns element height based on its width and its specified aspect-ratio
  => helpful to replace aspect-ratio css property as it doesn't work on Safari
@@ -117,7 +119,7 @@ const setElementWidthBasedOnAspectRatio = () => {
     })}px`;
   }
 };
-if (!CSS.supports("aspect-ratio: 1")) {
+if (!CSS.supports("aspect-ratio: 1") && lastWidth > 500) {
   setElementWidthBasedOnAspectRatio();
   window.addEventListener("resize", setElementWidthBasedOnAspectRatio);
 }
