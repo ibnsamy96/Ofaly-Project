@@ -1,16 +1,5 @@
 // console.log = () => {}; // to hide all logs
 
-// ------------------- General Purpose Functions ------------------- //
-
-// returns the current document width
-function getDocumentWidth() {
-  return (
-    window.innerWidth ||
-    document.documentElement.clientWidth ||
-    document.body.clientWidth
-  );
-}
-
 // ------------------------ Updating Clock ------------------------ //
 
 const clockSpan = document.querySelector("#clock");
@@ -89,8 +78,17 @@ launcherIcons.forEach((icon, index) => {
 
 // ------------------------ Handling Aspect Ratio ------------------------ //
 
+// returns the current document width
+function getDocumentWidth() {
+  return (
+    window.innerWidth ||
+    document.documentElement.clientWidth ||
+    document.body.clientWidth
+  );
+}
+
 // Holds the document width => helpful to be checked to maintain responsiveness
-let lastWidth = getDocumentWidth();
+let lastWidth;
 console.log(lastWidth);
 /*
  returns element height based on its width and its specified aspect-ratio
@@ -104,23 +102,31 @@ function getElementWidthByCalculatingAspectRatio({ element, mainRatio }) {
   );
   const elementWidth = elementHeight * mainRatio;
 
-  console.log(elementWidth);
-  console.log(elementHeight);
+  console.log(elementWidth + " elementWidth");
+  console.log(elementHeight + " elementHeight");
 
   return elementWidth;
 }
 
+const phoneMainElement = document.querySelector("main");
+
 // if no aspect-ratio support, then add event listener to window to update mobile height using getElementWidthByCalculatingAspectRatio()
 const setElementWidthBasedOnAspectRatio = () => {
   if (lastWidth !== getDocumentWidth()) {
-    const phoneEL = document.querySelector("main");
-    phoneEL.style.width = `${getElementWidthByCalculatingAspectRatio({
-      element: phoneEL,
+    phoneMainElement.style.width = `${getElementWidthByCalculatingAspectRatio({
+      element: phoneMainElement,
       mainRatio: 480 / 980,
     })}px`;
   }
 };
-if (!CSS.supports("aspect-ratio: 1") && lastWidth > 500) {
+if (!CSS.supports("aspect-ratio: 1") && getDocumentWidth() > 500) {
   setElementWidthBasedOnAspectRatio();
   window.addEventListener("resize", setElementWidthBasedOnAspectRatio);
 }
+
+window.addEventListener("load", () => {
+  console.log("loaded");
+
+  const x = document.querySelector("#layer");
+  x.style.display = "none";
+});
