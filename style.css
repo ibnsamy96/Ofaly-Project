@@ -2,15 +2,13 @@
 Table of contents
 ------------------------------------------------
 01. reset css
-02. launcher
+02. background
+03. loading layer
+04. launcher
 ---------------------------------------------
 Each Section has its default styles and
 responsiveness ones.
-Max-Width Checkpoint 1 => 1536px 
-Max-Width Checkpoint 2 => 1200px
-Max-Width Checkpoint 3 => 1025px
-Max-Width Checkpoint 4 => 900px
-Max-Width Checkpoint 5 => 500px
+Max-Width Checkpoint => 500px
 --------------------------------------------- */
 
 /* TODO enhance code and use variables */
@@ -62,7 +60,7 @@ body {
 
 /* 
 ---------------------------------------------
-02. Launcher
+02. Background
 --------------------------------------------- 
 */
 
@@ -77,6 +75,18 @@ body {
   align-items: center;
   justify-content: center;
 }
+
+@media (max-width: 500px) {
+  body {
+    display: initial;
+  }
+}
+
+/* 
+---------------------------------------------
+03. Loading Layer
+--------------------------------------------- 
+*/
 
 #loading-layer {
   position: fixed;
@@ -97,6 +107,12 @@ body {
   opacity: 1;
   transition: opacity 1s;
 }
+
+/* 
+---------------------------------------------
+04. Launcher
+--------------------------------------------- 
+*/
 
 #launcher-outer-container {
   --default-width: 480;
@@ -216,10 +232,6 @@ body {
 }
 
 @media (max-width: 500px) {
-  body {
-    display: initial;
-  }
-
   #launcher-outer-container {
     background-image: none;
     background-color: transparent;
