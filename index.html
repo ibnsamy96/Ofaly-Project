@@ -24,9 +24,7 @@
     <main id="launcher-outer-container">
       <div id="launcher-inner-container">
         <div id="notification-bar">
-          <span id="clock"
-            ><span id="hours">12</span>:<span id="minutes">30</span></span
-          >
+          <span id="clock">00:00</span>
           <img id="battery" src="./assets/icons/battery.svg" />
           <img id="reception" src="./assets/icons/reception.svg" />
           <img id="wifi" src="./assets/icons/wifi.svg" />
@@ -59,8 +57,7 @@
         });
       });
 
-      const clockHoursSpan = document.querySelector("#clock #hours");
-      const clockMinutesSpan = document.querySelector("#clock #minutes");
+      const clockSpan = document.querySelector("#clock");
 
       const isItOneDigitNumber = (number) =>
         String(number).split("").length === 1;
@@ -74,8 +71,7 @@
           ? `0${time.getMinutes()}`
           : time.getMinutes();
 
-        clockHoursSpan.innerText = hours;
-        clockMinutesSpan.innerText = minutes;
+        clockSpan.innerText = `${hours}:${minutes}`;
       };
 
       updateTime();
