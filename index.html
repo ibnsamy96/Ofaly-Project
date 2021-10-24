@@ -49,6 +49,16 @@
     <script src="./launcher-icons.js"></script>
     <!-- <script src="./app.js"></script> -->
     <script id="tempScript">
+      const aEls = [...document.querySelectorAll("a")];
+
+      aEls.forEach((el) => {
+        el.addEventListener("click", (event) => {
+          event.preventDefault();
+          aEls.forEach((el) => el.classList.remove("selected"));
+          el.classList.add("selected");
+        });
+      });
+
       const clockHoursSpan = document.querySelector("#clock #hours");
       const clockMinutesSpan = document.querySelector("#clock #minutes");
 
