@@ -50,16 +50,22 @@ body {
   background-position: right bottom;
   background-repeat: no-repeat;
   background-attachment: fixed;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
 #launcher-outer-container {
   background-image: url("./assets/Phone.png");
-  background-size: auto 100%;
+  background-size: 100% 100%;
   background-repeat: no-repeat;
   background-color: transparent;
 
-  width: 480px;
-  height: 980px;
+  width: auto;
+  height: 95vh;
+
+  aspect-ratio: 480/980;
   margin: auto;
   padding: 22px;
 }

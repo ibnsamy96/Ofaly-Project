@@ -37,29 +37,7 @@ setInterval(updateTime, 1000);
 
 // ------------------------ Adding Icons ------------------------ //
 
-// Holds the document width => helpful to be checked to maintain responsiveness
-let lastWidth;
-
-// /*
-//  returns element height based on its width and its specified aspect-ratio
-//  => helpful to replace aspect-ratio css property as it doesn't work on Safari
-// */
-// function getElementHeightByCalculatingAspectRatio({ element, mainRatio }) {
-//   lastWidth = getDocumentWidth();
-
-//   const elementWidth = parseFloat(
-//     window.getComputedStyle(element).getPropertyValue("width")
-//   );
-//   const elementHeight = elementWidth * (1 / mainRatio);
-
-//   console.log(elementWidth);
-//   console.log(elementHeight);
-
-//   return elementHeight;
-// }
-
 let lastClickedIcon;
-// const iconsContainersObjects = [];
 /*
 takes an iconObject:{ index , hrefValue , iconLink } as an argument, creates element for the icon
 and and adds it to the gallery section in the page
@@ -97,19 +75,6 @@ function addIconsToLauncher(iconObject) {
 
   iconContainerAnchor.appendChild(iconImg);
   iconsSection.appendChild(iconContainerAnchor);
-
-  // // specifying launcher icons aspect-ratio
-  // if (!CSS.supports("aspect-ratio: 1")) {
-  //   console.log("no aspect-ratio support");
-  //   const elementObject = {
-  //     element: iconContainerAnchor,
-  //     mainRatio: 1,
-  //   };
-  //   iconContainerAnchor.style.height = `${getElementHeightByCalculatingAspectRatio(
-  //     elementObject
-  //   )}px`;
-  // iconsContainersObjects.push(elementObject);
-  // }
 }
 
 // adds all icons from 'launcherIcons' to the launcher
@@ -119,31 +84,40 @@ launcherIcons.forEach((icon, index) => {
   addIconsToLauncher(iconObject);
 });
 
-// // if icons isn't 3,6,9,12... then add 'margin:auto' to the last row icons
-// if (launcherIcons.length % 3 !== 0) {
-//   console.log(launcherIcons);
-//   const iconsTempVar = [
-//     ...document.querySelectorAll("#launcher .row .col:nth-of-type(3n-2)"),
-//   ];
+// ------------------------ Handling Aspect Ratio ------------------------ //
 
-//   const lastIconContainer =
-//     iconsTempVar[iconsTempVar.length - 1].querySelector(".icon-container");
+// Holds the document width => helpful to be checked to maintain responsiveness
+let lastWidth;
 
-//   console.log(lastIconContainer);
-//   lastIconContainer.classList.add("m-auto");
-// }
+/*
+ returns element height based on its width and its specified aspect-ratio
+ => helpful to replace aspect-ratio css property as it doesn't work on Safari
+*/
+function getElementWidthByCalculatingAspectRatio({ element, mainRatio }) {
+  lastWidth = getDocumentWidth();
+  // elementWidth;
+  const elementHeight = parseFloat(
+    window.getComputedStyle(element).getPropertyValue("height")
+  );
+  const elementWidth = elementHeight * mainRatio;
 
-// // if no aspect-ratio support, then add event listener to window to update icons height using getElementHeightByCalculatingAspectRatio()
-// if (!CSS.supports("aspect-ratio: 1")) {
-//   window.addEventListener("resize", () => {
-//     if (lastWidth !== getDocumentWidth()) {
-//       iconsContainersObjects.forEach((elementObject) => {
-//         elementObject[
-//           "element"
-//         ].style.height = `${getElementHeightByCalculatingAspectRatio(
-//           elementObject
-//         )}px`;
-//       });
-//     }
-//   });
-// }
+  console.log(elementWidth);
+  console.log(elementHeight);
+
+  return elementWidth;
+}
+
+// if no aspect-ratio support, then add event listener to window to update mobile height using getElementWidthByCalculatingAspectRatio()
+const setElementWidthBasedOnAspectRatio = () => {
+  if (lastWidth !== getDocumentWidth()) {
+    const phoneEL = document.querySelector("main");
+    phoneEL.style.width = `${getElementWidthByCalculatingAspectRatio({
+      element: phoneEL,
+      mainRatio: 480 / 980,
+    })}px`;
+  }
+};
+if (!CSS.supports("aspect-ratio: 1")) {
+  setElementWidthBasedOnAspectRatio();
+  window.addEventListener("resize", setElementWidthBasedOnAspectRatio);
+}
