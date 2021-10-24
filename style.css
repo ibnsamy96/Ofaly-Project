@@ -13,6 +13,8 @@ Max-Width Checkpoint 4 => 900px
 Max-Width Checkpoint 5 => 500px
 --------------------------------------------- */
 
+/* TODO enhance code and use variables */
+
 /* 
 ---------------------------------------------
 01. Reset css
@@ -98,7 +100,7 @@ body {
   justify-content: center;
 }
 
-#launcher-inner-container section {
+#launcher-inner-container > section {
   display: flex;
   flex-direction: row;
   flex-wrap: wrap;
@@ -130,13 +132,14 @@ body {
 }
 
 #launcher-inner-container > section > a.selected {
-  box-shadow: 0px 0px 8px 0px rgb(111 111 111 / 50%);
+  box-shadow: 0px 0px 10px 0px rgba(111, 111, 111, 0.3);
 }
 
 #launcher-inner-container > section > a img {
   width: 60%;
 }
 
+/* TODO it uses IDs! what if he added new logo to the launcher?! */
 #launcher-inner-container > section > a#superapp-logo img {
   width: 80%;
 }
