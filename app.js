@@ -140,12 +140,12 @@ window.addEventListener("load", () => {
   );
 
   loadingLayer.querySelector("img").style.opacity = 0;
-  loadingLayer.style.bottom = "100%";
-  loadingLayer.style.top = "-100%";
+  loadingLayer.style.bottom = "110%";
+  loadingLayer.style.top = "-110%";
 
   setTimeout(() => {
     ofalyLogo.style.margin = "0";
-  }, 1550);
+  }, 1500);
 
   setTimeout(() => {
     loadingLayer.style.display = "none";
