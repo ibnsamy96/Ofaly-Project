@@ -43,11 +43,11 @@ function addIconsToLauncher(iconObject) {
 
   iconContainerAnchor.setAttribute("href", iconObject.hrefValue);
 
-  const iconID = iconObject.hrefValue.split("/").pop() + "-logo";
-  iconContainerAnchor.setAttribute("id", iconID);
+  const iconTag = iconObject.hrefValue.split("/").pop();
+  iconContainerAnchor.setAttribute("id", iconTag + "-logo");
 
   iconImg.setAttribute("src", iconObject.iconLink);
-  iconImg.setAttribute("alt", `${iconID.toUpperCase()} service.`);
+  iconImg.setAttribute("alt", `${iconTag.toUpperCase()} service.`);
 
   iconContainerAnchor.addEventListener("click", (e) => {
     e.preventDefault();
@@ -60,7 +60,6 @@ function addIconsToLauncher(iconObject) {
     lastClickedIcon.classList.add("selected");
 
     setTimeout(() => {
-      // TODO uncomment the next line
       window.location.href = iconObject.hrefValue;
     }, 200);
   });
@@ -136,9 +135,17 @@ window.addEventListener("load", () => {
   console.log("loaded");
 
   const loadingLayer = document.querySelector("#loading-layer");
+  const ofalyLogo = document.querySelector(
+    "#launcher-inner-container #logo-bar img"
+  );
 
   loadingLayer.querySelector("img").style.opacity = 0;
   loadingLayer.style.bottom = "100%";
+  loadingLayer.style.top = "-100%";
+
+  setTimeout(() => {
+    ofalyLogo.style.margin = "0";
+  }, 1550);
 
   setTimeout(() => {
     loadingLayer.style.display = "none";
