@@ -1,6 +1,6 @@
 console.log = () => {}; // to hide all logs
 
-// ------------------------ Updating Clock ------------------------ //
+// ------------------------ Clock Logic ------------------------ //
 
 const clockSpan = document.querySelector("#clock");
 
@@ -26,7 +26,7 @@ const updatingClockInterval = setInterval(updateTime, 1000);
 if (clockSpan) updateTime();
 else clearInterval(updatingClockInterval);
 
-// ------------------------ Adding Icons ------------------------ //
+// ------------------------ Adding Icons Logic ------------------------ //
 
 let lastClickedIcon;
 /*
@@ -75,7 +75,7 @@ launcherIcons.forEach((icon, index) => {
   addIconsToLauncher(iconObject);
 });
 
-// ------------------------ Handling Aspect Ratio ------------------------ //
+// ------------------------ Aspect Ratio Logic ------------------------ //
 
 // returns the current document width
 function getDocumentHeight() {
@@ -129,7 +129,7 @@ setElementWidthBasedOnAspectRatio();
 window.addEventListener("resize", setElementWidthBasedOnAspectRatio);
 // }
 
-// ------------------------ Removing Loader ------------------------ //
+// ------------------------ Loader Logic ------------------------ //
 
 window.addEventListener("load", () => {
   console.log("loaded");
@@ -149,5 +149,5 @@ window.addEventListener("load", () => {
 
   setTimeout(() => {
     loadingLayer.style.display = "none";
-  }, 2000);
+  }, 2500);
 });
