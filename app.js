@@ -1,4 +1,36 @@
-console.log = () => {}; // to hide all logs
+// console.log = () => {}; // to hide all logs
+
+// ------------------------ Loader Logic ------------------------ //
+
+let pageData = { isWindowLoaded: false, isIconsLoaded: false };
+
+window.addEventListener("load", () => {
+  pageData.isWindowLoaded = true;
+  removeLoaderLayer();
+});
+
+function removeLoaderLayer() {
+  // to remove the loader, we check if the window is loaded and all icons are loaded also
+  for (elementLoadingState of Object.getOwnPropertyNames(pageData))
+    if (!pageData[elementLoadingState]) return;
+
+  const loadingLayer = document.querySelector("#loading-layer");
+  const ofalyLogo = document.querySelector(
+    "#launcher-inner-container #logo-bar img"
+  );
+
+  loadingLayer.querySelector("img").style.opacity = 0;
+  loadingLayer.style.bottom = "110%";
+  loadingLayer.style.top = "-110%";
+
+  setTimeout(() => {
+    ofalyLogo.style.margin = "0";
+  }, 1500);
+
+  setTimeout(() => {
+    loadingLayer.style.display = "none";
+  }, 2500);
+}
 
 // ------------------------ Clock Logic ------------------------ //
 
@@ -162,26 +194,3 @@ const setElementWidthBasedOnAspectRatio = () => {
 setElementWidthBasedOnAspectRatio();
 window.addEventListener("resize", setElementWidthBasedOnAspectRatio);
 // }
-
-// ------------------------ Loader Logic ------------------------ //
-
-window.addEventListener("load", () => {
-  console.log("loaded");
-
-  const loadingLayer = document.querySelector("#loading-layer");
-  const ofalyLogo = document.querySelector(
-    "#launcher-inner-container #logo-bar img"
-  );
-
-  loadingLayer.querySelector("img").style.opacity = 0;
-  loadingLayer.style.bottom = "110%";
-  loadingLayer.style.top = "-110%";
-
-  setTimeout(() => {
-    ofalyLogo.style.margin = "0";
-  }, 1500);
-
-  setTimeout(() => {
-    loadingLayer.style.display = "none";
-  }, 2500);
-});
