@@ -1,4 +1,4 @@
-// console.log = () => {}; // to hide all logs
+console.log = () => {}; // to hide all logs
 
 // ------------------------ Updating Clock ------------------------ //
 
