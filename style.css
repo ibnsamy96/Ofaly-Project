@@ -231,7 +231,13 @@ body {
   z-index: 20;
 }
 
-#launcher-inner-container > nav > a img {
+#launcher-inner-container > nav > a.disabled {
+  /* box-shadow: 0px 0px 10px 0px rgba(111, 111, 111, 0.4);
+  z-index: 20; */
+  opacity: 0.5;
+}
+
+#launcher-inner-container > nav > a svg {
   width: 80%;
 }
 
@@ -248,7 +254,7 @@ body {
   }
 
   #launcher-inner-container {
-    background-color: transparent;
+    /* background-color: transparent; */
     border-radius: 0px;
   }
 

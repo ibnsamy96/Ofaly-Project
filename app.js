@@ -29,25 +29,67 @@ else clearInterval(updatingClockInterval);
 // ------------------------ Adding Icons Logic ------------------------ //
 
 let lastClickedIcon;
+
+async function fetchFile(url) {
+  try {
+    const request = await fetch(url);
+    const code = await request.text();
+    return code;
+  } catch (err) {
+    console.log(err);
+    return false;
+  }
+}
+
+async function fetchSVGs(linksArray) {
+  const responseArray = await Promise.allSettled(
+    linksArray.map((linkObject) => {
+      return fetchFile(linkObject.iconLink);
+    })
+  );
+  return responseArray;
+}
+
+// adds all icons from 'launcherIcons' to the launcher
+fetchSVGs(launcherIcons)
+  .then((responseArray) => {
+    launcherIcons.forEach((icon, index) => {
+      const iconObject = { response: responseArray[index], ...icon };
+      addIconsToLauncher(iconObject);
+    });
+    console.log(responseArray);
+  })
+  .then(() => {
+    pageData.isIconsLoaded = true;
+    removeLoaderLayer();
+  })
+  .catch((err) => {
+    console.log(err);
+  });
+
 /*
 takes an iconObject:{ index , hrefValue , iconLink } as an argument, creates element for the icon
 and and adds it to the gallery section in the page
 */
+const iconsSection = document.querySelector("#launcher-inner-container > nav");
+
 function addIconsToLauncher(iconObject) {
-  const iconsSection = document.querySelector(
-    "#launcher-inner-container > nav"
-  );
-
   const iconContainerAnchor = document.createElement("a");
-  const iconImg = document.createElement("img");
 
-  iconContainerAnchor.setAttribute("href", iconObject.hrefValue);
+  if (iconObject.hrefValue) {
+    if (iconObject.response.status !== "fulfilled") {
+      console.error(
+        "An error happened while fetching: " + iconObject.hrefValue
+      );
+      return;
+    }
+  } else iconContainerAnchor.classList.add("disabled");
 
-  const iconTag = iconObject.hrefValue.split("/").pop();
-  iconContainerAnchor.setAttribute("id", iconTag + "-logo");
+  const iconSVGCode = iconObject.response.value;
+  iconContainerAnchor.innerHTML = iconSVGCode;
 
-  iconImg.setAttribute("src", iconObject.iconLink);
-  iconImg.setAttribute("alt", `${iconTag.toUpperCase()} service.`);
+  iconContainerAnchor.querySelector("svg").removeAttribute("width");
+  iconContainerAnchor.querySelector("svg").removeAttribute("height");
 
   iconContainerAnchor.addEventListener("click", (e) => {
     e.preventDefault();
@@ -60,20 +102,12 @@ function addIconsToLauncher(iconObject) {
     lastClickedIcon.classList.add("selected");
 
     setTimeout(() => {
-      window.location.href = iconObject.hrefValue;
+      // window.location.href = iconObject.hrefValue;
     }, 200);
   });
 
-  iconContainerAnchor.appendChild(iconImg);
   iconsSection.appendChild(iconContainerAnchor);
 }
-
-// adds all icons from 'launcherIcons' to the launcher
-launcherIcons.forEach((icon, index) => {
-  console.log(index);
-  const iconObject = { index, ...icon };
-  addIconsToLauncher(iconObject);
-});
 
 // ------------------------ Aspect Ratio Logic ------------------------ //
 
