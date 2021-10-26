@@ -2,6 +2,7 @@
 
 // ------------------------ Loader Logic ------------------------ //
 
+// pageData represents the loading state of window and icons
 let pageData = { isWindowLoaded: false, isIconsLoaded: false };
 
 window.addEventListener("load", () => {
@@ -10,7 +11,10 @@ window.addEventListener("load", () => {
 });
 
 function removeLoaderLayer() {
-  // to remove the loader, we check if the window is loaded and all icons are loaded also
+  /*
+   to remove the loader, we check if the window is loaded and all icons are loaded too
+   if any of them isn't loaded, return
+   */
   for (elementLoadingState of Object.getOwnPropertyNames(pageData))
     if (!pageData[elementLoadingState]) return;
 
@@ -62,6 +66,7 @@ else clearInterval(updatingClockInterval);
 
 let lastClickedIcon;
 
+// simple function to fetch text file
 async function fetchFile(url) {
   try {
     const request = await fetch(url);
@@ -73,6 +78,7 @@ async function fetchFile(url) {
   }
 }
 
+// fetches all the svgs and return a response array
 async function fetchSVGs(linksArray) {
   const responseArray = await Promise.allSettled(
     linksArray.map((linkObject) => {
@@ -110,14 +116,6 @@ function addIconsToLauncher(iconObject) {
   const iconSVGCode = iconObject.response.value;
   iconContainerAnchor.innerHTML = iconSVGCode;
 
-  // if () {
-  //   if (iconObject.response.status !== "fulfilled") {
-  //     console.error(
-  //       "An error happened while fetching: " + iconObject.hrefValue
-  //     );
-  //     return;
-  //   }
-  // } else
   console.log(iconObject.response.status);
   if (
     iconObject.response.status !== "fulfilled" ||
@@ -163,20 +161,20 @@ function getDocumentHeight() {
   );
 }
 
-// Holds the document width => helpful to be checked to maintain responsiveness
+// holds the document height => helpful to be checked to maintain responsiveness
 let lastHeight;
 console.log(lastHeight);
 /*
- returns element height based on its width and its specified aspect-ratio
- => helpful to replace aspect-ratio css property as it doesn't work on Safari
+ returns element width based on its height and its specified aspect-ratio
+ => helpful to replace aspect-ratio css property as it isn't supported on Safari
 */
-function getElementWidthByCalculatingAspectRatio({ element, mainRatio }) {
+function getElementWidthByCalculatingAspectRatio({ element, defaultRatio }) {
   lastHeight = getDocumentHeight();
-  // elementWidth;
+
   const elementHeight = parseFloat(
     window.getComputedStyle(element).getPropertyValue("height")
   );
-  const elementWidth = elementHeight * mainRatio;
+  const elementWidth = elementHeight * defaultRatio;
 
   console.log(elementWidth + " elementWidth");
   console.log(elementHeight + " elementHeight");
@@ -186,22 +184,20 @@ function getElementWidthByCalculatingAspectRatio({ element, mainRatio }) {
 
 const phoneMainElement = document.querySelector("main");
 
-// if no aspect-ratio support, then add event listener to window to update mobile height using getElementWidthByCalculatingAspectRatio()
+// sets the new width of the outer main element based on its height and its default ratio
 const setElementWidthBasedOnAspectRatio = () => {
   if (lastHeight !== getDocumentHeight()) {
     const newWidth = `${getElementWidthByCalculatingAspectRatio({
       element: phoneMainElement,
-      mainRatio: 480 / 980,
+      defaultRatio: 480 / 980,
     })}`;
 
     console.log(newWidth);
 
-    // phoneMainElement.style.width = newWidth + 'px';
     phoneMainElement.style.setProperty("--new-width", newWidth + "px");
     console.log(phoneMainElement.style.getPropertyValue("--new-width"));
   }
 };
-// if (getDocumentHeight() > 500) {
+
 setElementWidthBasedOnAspectRatio();
 window.addEventListener("resize", setElementWidthBasedOnAspectRatio);
-// }
