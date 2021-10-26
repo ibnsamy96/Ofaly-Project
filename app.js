@@ -1,4 +1,4 @@
-// console.log = () => {}; // to hide all logs
+console.log = () => {}; // to hide all logs
 
 // ------------------------ Loader Logic ------------------------ //
 
@@ -64,6 +64,8 @@ else clearInterval(updatingClockInterval);
 
 // ------------------------ Adding Icons Logic ------------------------ //
 
+const iconsSection = document.querySelector("#launcher-inner-container > nav");
+
 let lastClickedIcon;
 
 // simple function to fetch text file
@@ -73,7 +75,7 @@ async function fetchFile(url) {
     const code = await request.text();
     return code;
   } catch (err) {
-    console.log(err);
+    console.error(err);
     return false;
   }
 }
@@ -91,9 +93,9 @@ async function fetchSVGs(linksArray) {
 // adds all icons from 'launcherIcons' to the launcher
 fetchSVGs(launcherIcons)
   .then((responseArray) => {
-    console.log(responseArray);
     launcherIcons.forEach((icon, index) => {
       const iconObject = { response: responseArray[index], ...icon };
+      console.log(iconObject);
       addIconsToLauncher(iconObject);
     });
   })
@@ -102,21 +104,19 @@ fetchSVGs(launcherIcons)
     removeLoaderLayer();
   })
   .catch((err) => {
-    console.log(err);
+    console.error(err);
   });
 
 /*
 takes an iconObject:{ index , hrefValue , iconLink } as an argument, creates element for the icon
 and and adds it to the gallery section in the page
 */
-const iconsSection = document.querySelector("#launcher-inner-container > nav");
 
 function addIconsToLauncher(iconObject) {
   const iconContainerAnchor = document.createElement("a");
   const iconSVGCode = iconObject.response.value;
   iconContainerAnchor.innerHTML = iconSVGCode;
 
-  console.log(iconObject.response.status);
   if (
     iconObject.response.status !== "fulfilled" ||
     !iconContainerAnchor.querySelector("svg")
@@ -146,9 +146,6 @@ function addIconsToLauncher(iconObject) {
         window.location.href = iconObject.hrefValue;
       }, 200);
     });
-  } else {
-    // if there isn't href value
-    iconContainerAnchor.classList.add("disabled");
   }
 
   iconsSection.appendChild(iconContainerAnchor);
