@@ -85,11 +85,11 @@ async function fetchSVGs(linksArray) {
 // adds all icons from 'launcherIcons' to the launcher
 fetchSVGs(launcherIcons)
   .then((responseArray) => {
+    console.log(responseArray);
     launcherIcons.forEach((icon, index) => {
       const iconObject = { response: responseArray[index], ...icon };
       addIconsToLauncher(iconObject);
     });
-    console.log(responseArray);
   })
   .then(() => {
     pageData.isIconsLoaded = true;
@@ -107,18 +107,29 @@ const iconsSection = document.querySelector("#launcher-inner-container > nav");
 
 function addIconsToLauncher(iconObject) {
   const iconContainerAnchor = document.createElement("a");
-
-  if (iconObject.hrefValue) {
-    if (iconObject.response.status !== "fulfilled") {
-      console.error(
-        "An error happened while fetching: " + iconObject.hrefValue
-      );
-      return;
-    }
-  } else iconContainerAnchor.classList.add("disabled");
-
   const iconSVGCode = iconObject.response.value;
   iconContainerAnchor.innerHTML = iconSVGCode;
+
+  // if () {
+  //   if (iconObject.response.status !== "fulfilled") {
+  //     console.error(
+  //       "An error happened while fetching: " + iconObject.hrefValue
+  //     );
+  //     return;
+  //   }
+  // } else
+  console.log(iconObject.response.status);
+  if (
+    iconObject.response.status !== "fulfilled" ||
+    !iconContainerAnchor.querySelector("svg")
+  ) {
+    // response wasn't fulfilled
+    console.error("An error happened while fetching: " + iconObject.iconLink);
+    return;
+  } else if (!iconObject.hrefValue) {
+    // response is fulfilled but hasn't an href value
+    iconContainerAnchor.classList.add("disabled");
+  }
 
   iconContainerAnchor.querySelector("svg").removeAttribute("width");
   iconContainerAnchor.querySelector("svg").removeAttribute("height");
