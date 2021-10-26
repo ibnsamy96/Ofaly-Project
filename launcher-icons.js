@@ -23,6 +23,20 @@ const launcherIcons = [
     iconLink: "./assets/logos/mafia.svg",
     hrefValue: "https://ofaly.com/mafia",
   },
+  ,
+  {
+    iconLink: "./assets/logos/mafia.svg",
+    hrefValue: "https://ofaly.com/mafia",
+  },
+  ,
+  {
+    iconLink: "./assets/logos/mafia.svg",
+    hrefValue: "https://ofaly.com/mafia",
+  },
+  {
+    iconLink: "./assets/logos/mafia.svg",
+    hrefValue: "https://ofaly.com/mafia",
+  },
   {
     iconLink: "./assets/logos/mafia.svg",
     hrefValue: "https://ofaly.com/mafia",

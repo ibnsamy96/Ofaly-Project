@@ -226,16 +226,16 @@ body {
   position: relative;
 }
 
-#launcher-inner-container > nav > a:nth-of-type(3n-2):last-of-type::after {
+#launcher-inner-container
+  > nav
+  > a:last-of-type:not(:nth-of-type(3n-1)):not(:nth-of-type(3n)):after {
   content: "";
   position: absolute;
   top: 0;
-  right: -0.5px;
+  left: calc(100%);
+  width: 0.5px;
+  background-color: #cfd3d6;
   bottom: -1px;
-
-  border-right: var(--default-border);
-
-  width: 0px;
 }
 
 #launcher-inner-container > nav > a:hover {
