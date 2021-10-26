@@ -121,31 +121,35 @@ function addIconsToLauncher(iconObject) {
     iconObject.response.status !== "fulfilled" ||
     !iconContainerAnchor.querySelector("svg")
   ) {
-    // response wasn't fulfilled
+    // if response wasn't fulfilled, log a message and don't add an anchor element
     console.error("An error happened while fetching: " + iconObject.iconLink);
     return;
-  } else if (!iconObject.hrefValue) {
-    // response is fulfilled but hasn't an href value
-    iconContainerAnchor.classList.add("disabled");
   }
 
   iconContainerAnchor.querySelector("svg").removeAttribute("width");
   iconContainerAnchor.querySelector("svg").removeAttribute("height");
 
-  iconContainerAnchor.addEventListener("click", (e) => {
-    e.preventDefault();
-    try {
-      lastClickedIcon.classList.remove("selected");
-    } catch (error) {}
+  if (iconObject.hrefValue) {
+    iconContainerAnchor.setAttribute("href", iconObject.hrefValue);
 
-    lastClickedIcon =
-      e.target.tagName === "A" ? e.target : e.target.parentElement;
-    lastClickedIcon.classList.add("selected");
+    iconContainerAnchor.addEventListener("click", (e) => {
+      e.preventDefault();
+      try {
+        lastClickedIcon.classList.remove("selected");
+      } catch (error) {}
 
-    setTimeout(() => {
-      window.location.href = iconObject.hrefValue;
-    }, 200);
-  });
+      lastClickedIcon =
+        e.target.tagName === "A" ? e.target : e.target.parentElement;
+      lastClickedIcon.classList.add("selected");
+
+      setTimeout(() => {
+        window.location.href = iconObject.hrefValue;
+      }, 200);
+    });
+  } else {
+    // if there isn't href value
+    iconContainerAnchor.classList.add("disabled");
+  }
 
   iconsSection.appendChild(iconContainerAnchor);
 }

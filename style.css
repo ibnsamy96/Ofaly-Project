@@ -211,9 +211,12 @@ body {
 
   border-bottom: var(--default-border);
   background-color: white;
-  cursor: pointer;
 
   transition: box-shadow 250ms;
+}
+
+#launcher-inner-container > nav > a:not(.disabled) {
+  cursor: pointer;
 }
 
 #launcher-inner-container > nav > a:nth-of-type(3n-1) {
@@ -238,7 +241,7 @@ body {
   bottom: -1px;
 }
 
-#launcher-inner-container > nav > a:hover {
+#launcher-inner-container > nav > a:not(.disabled):hover {
   box-shadow: 0px 0px 5px 0px rgba(111, 111, 111, 0.3);
   z-index: 10;
 }
