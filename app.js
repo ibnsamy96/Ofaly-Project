@@ -143,7 +143,7 @@ function addIconsToLauncher(iconObject) {
     lastClickedIcon.classList.add("selected");
 
     setTimeout(() => {
-      // window.location.href = iconObject.hrefValue;
+      window.location.href = iconObject.hrefValue;
     }, 200);
   });
 
