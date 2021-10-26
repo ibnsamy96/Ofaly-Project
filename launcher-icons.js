@@ -24,6 +24,6 @@ const launcherIcons = [
     hrefValue: "https://ofaly.com/mafia",
   },
   {
-    iconLink: "./assets/logos/express.svg",
+    iconLink: "./assets/logos/digital.svg",
   },
 ];
