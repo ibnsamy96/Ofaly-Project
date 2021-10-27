@@ -1,0 +1,269 @@
+/* ---------------------------------------------
+Table of contents
+------------------------------------------------
+01. reset css
+02. background
+03. loading layer
+04. launcher
+---------------------------------------------
+Each Section has its default styles and
+responsiveness ones.
+Max-Width Checkpoint => 500px
+--------------------------------------------- */
+
+/* 
+---------------------------------------------
+01. Reset css
+--------------------------------------------- 
+*/
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+
+  font-family: "Roboto", sans-serif;
+  font-size: 16px;
+  font-weight: 400;
+}
+
+html {
+  height: 100%;
+}
+
+body {
+  min-height: 100%;
+}
+
+/* width of vertical & height of horizontal scroll-bars */
+::-webkit-scrollbar {
+  width: 10px;
+  height: 10px;
+}
+
+/* Track */
+::-webkit-scrollbar-track {
+  background: #f1f1f1;
+}
+
+/* Handle */
+::-webkit-scrollbar-thumb {
+  background: rgba(178, 37, 25, 0.5);
+}
+
+/* Handle on hover */
+::-webkit-scrollbar-thumb:hover {
+  background: rgb(140, 30, 21, 0.7);
+}
+
+/* 
+---------------------------------------------
+02. Background
+--------------------------------------------- 
+*/
+
+body {
+  background-image: url(./assets/background.png);
+  background-size: 100% auto;
+  background-position: right bottom;
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+@media (max-width: 500px) {
+  body {
+    display: initial;
+  }
+}
+
+/* 
+---------------------------------------------
+03. Loading Layer
+--------------------------------------------- 
+*/
+
+#loading-layer {
+  position: fixed;
+  top: 0;
+  bottom: 0;
+  right: 0;
+  left: 0;
+
+  transition: top 2s, bottom 2s;
+  z-index: 999999;
+
+  background-color: #b22519;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+#loading-layer > img {
+  max-width: 60%;
+  width: 130px;
+  opacity: 1;
+  transition: opacity 1s;
+}
+
+/* 
+---------------------------------------------
+04. Launcher
+--------------------------------------------- 
+*/
+
+#launcher-outer-container {
+  --default-width: 480;
+  --default-height: 980;
+  --default-padding: 22;
+
+  --new-width: auto;
+
+  background-image: url("./assets/Phone.png");
+  background-size: 100% 100%;
+  background-repeat: no-repeat;
+
+  width: var(--new-width);
+  height: 95vh;
+
+  margin: auto;
+  padding: calc(var(--new-width) * 22 / 480);
+}
+
+#launcher-inner-container {
+  --default-border-radius: 40px;
+
+  background-color: white;
+  width: 100%;
+  height: 100%;
+  border-radius: calc(var(--new-width) * 40 / 480);
+
+  overflow: hidden;
+
+  display: flex;
+  flex-direction: column;
+}
+
+#launcher-inner-container #notification-bar {
+  min-height: 30px;
+  padding-right: calc(var(--new-width) * 22 / 480);
+
+  display: flex;
+  flex-direction: row-reverse;
+  align-items: center;
+
+  background-color: #8c1e15;
+  color: white;
+}
+
+#launcher-inner-container #notification-bar #clock,
+#launcher-inner-container #notification-bar #battery {
+  padding-left: 8px;
+}
+
+#launcher-inner-container #notification-bar #reception {
+  padding-left: 2px;
+}
+
+#launcher-inner-container #logo-bar {
+  min-height: 40px;
+
+  background-color: #b22519;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  overflow: hidden;
+}
+
+#launcher-inner-container #logo-bar img {
+  margin-top: -100px;
+  transition: margin 500ms;
+}
+
+#launcher-inner-container > nav {
+  --default-a-border: 1px solid #cfd3d6;
+  --default-a-padding: 17px;
+
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: flex-start;
+
+  overflow-y: auto;
+  padding-bottom: 5px;
+}
+
+#launcher-inner-container > nav > a {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  width: calc(100% / 3);
+  padding: calc(var(--new-width) * 17 / 480);
+
+  border-bottom: var(--default-a-border);
+  border-right: var(--default-a-border);
+
+  background-color: white;
+
+  transition: box-shadow 250ms;
+}
+
+#launcher-inner-container > nav > a[href] {
+  cursor: pointer;
+}
+
+#launcher-inner-container > nav > a:nth-of-type(3n) {
+  border-right: none;
+}
+
+#launcher-inner-container > nav > a[href]:hover {
+  box-shadow: 0px 0px 5px 0px rgba(111, 111, 111, 0.3);
+  z-index: 10;
+}
+
+#launcher-inner-container > nav > a.selected {
+  box-shadow: 0px 0px 10px 0px rgba(111, 111, 111, 0.4);
+  z-index: 20;
+}
+
+#launcher-inner-container > nav > a svg {
+  width: 80%;
+}
+
+#launcher-inner-container > nav > a:not([href]) > svg path {
+  /* box-shadow: 0px 0px 10px 0px rgba(111, 111, 111, 0.4);
+  z-index: 20; */
+  fill: #9e9e9e;
+}
+
+@media (max-width: 500px) {
+  #launcher-outer-container {
+    background-image: none;
+    background-color: transparent;
+
+    width: 100%;
+    height: 100%;
+
+    margin: 0px;
+    padding: 0px;
+  }
+
+  #launcher-inner-container {
+    border-radius: 0px;
+  }
+
+  #launcher-inner-container #notification-bar {
+    display: none;
+  }
+
+  #launcher-inner-container #logo-bar {
+    padding-top: 4px;
+  }
+}

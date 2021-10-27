@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="description" content="Ofaly holding company." />
+
+    <!-- changing top bar bg-color for in mobiles -->
+    <meta name="theme-color" content="#8c1e15" />
+    <meta name="msapplication-navbutton-color" content="#8c1e15" />
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta
+      name="apple-mobile-web-app-status-bar-style"
+      content="black-translucent"
+    />
+
+    <title>This is Ofaly</title>
+
+    <!-- custom styles files -->
+    <link rel="stylesheet" href="style.css" />
+
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Roboto&display=swap"
+      rel="stylesheet"
+    />
+  </head>
+
+  <body>
+    <div id="loading-layer">
+      <img src="./assets/logos/Ofaly.svg" alt="Ofaly company logo." />
+    </div>
+    <main id="launcher-outer-container">
+      <div id="launcher-inner-container">
+        <div id="notification-bar" aria-hidden="true">
+          <span id="clock">00:00</span>
+          <img id="battery" src="./assets/icons/battery.svg" width="" />
+          <img id="reception" src="./assets/icons/reception.svg" />
+          <img id="wifi" src="./assets/icons/wifi.svg" />
+        </div>
+        <div id="logo-bar">
+          <img src="./assets/logos/Ofaly.svg" alt="Ofaly company logo." />
+        </div>
+        <nav role="navigation" aria-label="Main"></nav>
+      </div>
+    </main>
+
+    <!-- scripts -->
+    <script src="./launcher-icons.js"></script>
+    <script src="./app.js"></script>
+  </body>
+</html>
