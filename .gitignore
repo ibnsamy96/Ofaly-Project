@@ -1,9 +1,12 @@
 # Config Files/Folders
 .vscode
+design-assets
+
 
 # Design Files
 *.xd
 *.pdf
+*.fig
 
 # Videos
 *.mp4
