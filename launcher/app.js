@@ -1,204 +1,120 @@
+// import { launcherImages } from "./launcher-images.js";
+
 console.log = () => {}; // to hide all logs
 
-// ------------------------ Loader Logic ------------------------ //
-
-// pageData represents the loading state of window and icons
-let pageData = { isWindowLoaded: false, isIconsLoaded: false };
-
-window.addEventListener("load", () => {
-  pageData.isWindowLoaded = true;
-  removeLoaderLayer();
-});
-
-function removeLoaderLayer() {
-  /*
-   to remove the loader, we check if the window is loaded and all icons are loaded too
-   if any of them isn't loaded, return
-   */
-  for (elementLoadingState of Object.getOwnPropertyNames(pageData))
-    if (!pageData[elementLoadingState]) return;
-
-  const loadingLayer = document.querySelector("#loading-layer");
-  const ofalyLogo = document.querySelector(
-    "#launcher-inner-container #logo-bar img"
-  );
-
-  loadingLayer.querySelector("img").style.opacity = 0;
-  loadingLayer.style.bottom = "110%";
-  loadingLayer.style.top = "-110%";
-
-  setTimeout(() => {
-    ofalyLogo.style.margin = "0";
-  }, 1500);
-
-  setTimeout(() => {
-    loadingLayer.style.display = "none";
-  }, 2500);
-}
-
-// ------------------------ Clock Logic ------------------------ //
-
-const clockSpan = document.querySelector("#clock");
-
-// Checks if the hours/minutes number is one digit number
-const isItOneDigitNumber = (number) => String(number).split("").length === 1;
-
-// gets the new time and renders the minutes and hours
-const updateTime = () => {
-  const time = new Date();
-  const hours = isItOneDigitNumber(time.getHours())
-    ? `0${time.getHours()}`
-    : time.getHours();
-  const minutes = isItOneDigitNumber(time.getMinutes())
-    ? `0${time.getMinutes()}`
-    : time.getMinutes();
-
-  clockSpan.innerText = `${hours}:${minutes}`;
-};
-
-// update time right after the document is loaded and every second
-const updatingClockInterval = setInterval(updateTime, 1000);
-
-if (clockSpan) updateTime();
-else clearInterval(updatingClockInterval);
-
-// ------------------------ Adding Icons Logic ------------------------ //
-
-const iconsSection = document.querySelector("#launcher-inner-container > nav");
-
-let lastClickedIcon;
-
-// simple function to fetch text file
-async function fetchFile(url) {
-  try {
-    const request = await fetch(url);
-    const code = await request.text();
-    return code;
-  } catch (err) {
-    console.error(err);
-    return false;
-  }
-}
-
-// fetches all the svgs and return a response array
-async function fetchSVGs(linksArray) {
-  const responseArray = await Promise.allSettled(
-    linksArray.map((linkObject) => {
-      return fetchFile(linkObject.iconLink);
-    })
-  );
-  return responseArray;
-}
-
-// adds all icons from 'launcherIcons' to the launcher
-fetchSVGs(launcherIcons)
-  .then((responseArray) => {
-    launcherIcons.forEach((icon, index) => {
-      const iconObject = { response: responseArray[index], ...icon };
-      console.log(iconObject);
-      addIconsToLauncher(iconObject);
-    });
-  })
-  .then(() => {
-    pageData.isIconsLoaded = true;
-    removeLoaderLayer();
-  })
-  .catch((err) => {
-    console.error(err);
-  });
-
-/*
-takes an iconObject:{ index , hrefValue , iconLink } as an argument, creates element for the icon
-and and adds it to the gallery section in the page
-*/
-
-function addIconsToLauncher(iconObject) {
-  const iconContainerAnchor = document.createElement("a");
-  const iconSVGCode = iconObject.response.value;
-  iconContainerAnchor.innerHTML = iconSVGCode;
-
-  if (
-    iconObject.response.status !== "fulfilled" ||
-    !iconContainerAnchor.querySelector("svg")
-  ) {
-    // if response wasn't fulfilled, log a message and don't add an anchor element
-    console.error("An error happened while fetching: " + iconObject.iconLink);
-    return;
-  }
-
-  iconContainerAnchor.querySelector("svg").removeAttribute("width");
-  iconContainerAnchor.querySelector("svg").removeAttribute("height");
-
-  if (iconObject.hrefValue) {
-    iconContainerAnchor.setAttribute("href", iconObject.hrefValue);
-
-    iconContainerAnchor.addEventListener("click", (e) => {
-      e.preventDefault();
-      try {
-        lastClickedIcon.classList.remove("selected");
-      } catch (error) {}
-
-      lastClickedIcon =
-        e.target.tagName === "A" ? e.target : e.target.parentElement;
-      lastClickedIcon.classList.add("selected");
-
-      setTimeout(() => {
-        window.location.href = iconObject.hrefValue;
-      }, 200);
-    });
-  }
-
-  iconsSection.appendChild(iconContainerAnchor);
-}
-
-// ------------------------ Aspect Ratio Logic ------------------------ //
+// Holds the document width => helpful to be checked to maintain responsiveness
+let lastWidth;
 
 // returns the current document width
-function getDocumentHeight() {
+function getDocumentWidth() {
   return (
-    window.innerHeight ||
-    document.documentElement.clientHeight ||
-    document.body.clientHeight
+    window.innerWidth ||
+    document.documentElement.clientWidth ||
+    document.body.clientWidth
   );
 }
 
-// holds the document height => helpful to be checked to maintain responsiveness
-let lastHeight;
-console.log(lastHeight);
 /*
- returns element width based on its height and its specified aspect-ratio
- => helpful to replace aspect-ratio css property as it isn't supported on Safari
+ returns element height based on its width and its specified aspect-ratio
+ => helpful to replace aspect-ratio css property as it doesn't work on Safari
 */
-function getElementWidthByCalculatingAspectRatio({ element, defaultRatio }) {
-  lastHeight = getDocumentHeight();
+function getElementHeightByCalculatingAspectRatio({ element, mainRatio }) {
+  lastWidth = getDocumentWidth();
 
-  const elementHeight = parseFloat(
-    window.getComputedStyle(element).getPropertyValue("height")
+  const elementWidth = parseFloat(
+    window.getComputedStyle(element).getPropertyValue("width")
   );
-  const elementWidth = elementHeight * defaultRatio;
+  const elementHeight = elementWidth * (1 / mainRatio);
 
-  console.log(elementWidth + " elementWidth");
-  console.log(elementHeight + " elementHeight");
+  console.log(elementWidth);
+  console.log(elementHeight);
 
-  return elementWidth;
+  return elementHeight;
 }
 
-const phoneMainElement = document.querySelector("main");
+let lastClickedImage;
+const imgsContainersObjects = [];
+/*
+takes an imageObject:{ index , hrefValue , imgLink } as an argument, creates element for the image
+and and adds it to the gallery section in the page
+*/
+function addImagesToLauncher(imageObject) {
+  const launcherRow = document.querySelector("#launcher .container .row");
 
-// sets the new width of the outer main element based on its height and its default ratio
-const setElementWidthBasedOnAspectRatio = () => {
-  if (lastHeight !== getDocumentHeight()) {
-    const newWidth = `${getElementWidthByCalculatingAspectRatio({
-      element: phoneMainElement,
-      defaultRatio: 480 / 980,
-    })}`;
+  const launcherCol = document.createElement("div");
+  const imgContainer = document.createElement("a");
+  const launcherImg = document.createElement("div");
 
-    console.log(newWidth);
+  launcherCol.setAttribute("class", "col");
+  imgContainer.setAttribute("class", "img-container");
+  imgContainer.setAttribute("href", imageObject.hrefValue);
+  imgContainer.setAttribute("data-index", imageObject.index);
 
-    phoneMainElement.style.setProperty("--new-width", newWidth + "px");
-    console.log(phoneMainElement.style.getPropertyValue("--new-width"));
+  launcherImg.setAttribute("class", "launcher-img");
+  launcherImg.style.backgroundImage = `url('${imageObject.imgLink}')`;
+  launcherImg.addEventListener("click", (e) => {
+    e.preventDefault();
+    try {
+      lastClickedImage.style.borderColor = "transparent";
+    } catch (error) {}
+    lastClickedImage = e.target;
+    lastClickedImage.style.borderColor = "black";
+    setTimeout(() => {
+      window.location.href = imageObject.hrefValue;
+    }, 200);
+  });
+
+  launcherCol.appendChild(imgContainer);
+  imgContainer.appendChild(launcherImg);
+
+  launcherRow.appendChild(launcherCol);
+
+  // specifying launcher images aspect-ratio
+  if (!CSS.supports("aspect-ratio: 1")) {
+    console.log("no aspect-ratio support");
+    const elementObject = {
+      element: imgContainer,
+      mainRatio: 1,
+    };
+    imgContainer.style.height = `${getElementHeightByCalculatingAspectRatio(
+      elementObject
+    )}px`;
+    imgsContainersObjects.push(elementObject);
   }
-};
+}
 
-setElementWidthBasedOnAspectRatio();
-window.addEventListener("resize", setElementWidthBasedOnAspectRatio);
+// adds all images from 'launcherImages' to the launcher
+launcherImages.forEach((image, index) => {
+  console.log(index);
+  const imageObject = { index, ...image };
+  addImagesToLauncher(imageObject);
+});
+
+// if images isn't 3,6,9,12... then add 'margin:auto' to the last row images
+if (launcherImages.length % 3 !== 0) {
+  console.log(launcherImages);
+  const imagesTempVar = [
+    ...document.querySelectorAll("#launcher .row .col:nth-of-type(3n-2)"),
+  ];
+
+  const lastImageContainer =
+    imagesTempVar[imagesTempVar.length - 1].querySelector(".img-container");
+
+  console.log(lastImageContainer);
+  lastImageContainer.classList.add("m-auto");
+}
+
+// if no aspect-ratio support, then add event listener to window to update images height using getElementHeightByCalculatingAspectRatio()
+if (!CSS.supports("aspect-ratio: 1")) {
+  window.addEventListener("resize", () => {
+    if (lastWidth !== getDocumentWidth()) {
+      imgsContainersObjects.forEach((elementObject) => {
+        elementObject[
+          "element"
+        ].style.height = `${getElementHeightByCalculatingAspectRatio(
+          elementObject
+        )}px`;
+      });
+    }
+  });
+}
