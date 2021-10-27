@@ -1,9 +1,9 @@
+# Config Files/Folders
+.vscode
+
 # Design Files
 *.xd
 *.pdf
-
-# Config Files/Folders
-.vscode
 
 # Videos
 *.mp4
